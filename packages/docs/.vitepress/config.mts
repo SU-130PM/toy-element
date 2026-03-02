@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Toy-Element",
   description: "高仿ElementPlus组件库",
-  base: "/TOY-ELEMENT/",
+  base: "/toy-element/",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -27,3 +27,4 @@ export default defineConfig({
     ]
   }
 })
+
