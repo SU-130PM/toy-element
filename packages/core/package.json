@@ -1,0 +1,18 @@
+{
+    "name":  "@toy-element/core",
+    "version":  "0.0.0",
+    "private":  true,
+    "main":  "index.ts",
+    "types":  "index.ts",
+    "dependencies":  {
+                         "@toy-element/components":  "workspace:*",
+                         "@toy-element/utils":  "workspace:*",
+                         "@toy-element/theme":  "workspace:*"
+                     },
+    "peerDependencies":  {
+                             "vue":  "^3.5.0"
+                         },
+    "devDependencies":  {
+                            "vue":  "^3.5.18"
+                        }
+}

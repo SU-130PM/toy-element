@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+mkdir -p packages/{components,core,hooks,play,theme,utils}
+echo "Project skeleton initialized."
