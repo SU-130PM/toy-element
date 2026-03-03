@@ -4,5 +4,3 @@ import { withInstall } from "@toy-element/utils";
 
 export const ErButton = withInstall(Button);
 export const ErButtonGroup = withInstall(ButtonGroup);
-
-export * from "./types";

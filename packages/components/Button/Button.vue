@@ -1,23 +1,50 @@
-<script setup lang="ts">
+<script setup>
 import { ref, computed, inject } from "vue";
-import type { ButtonProps, ButtonEmits, ButtonInstance } from "./types";
 import { BUTTON_GROUP_CTX_KEY } from "./constants";
 import { throttle } from "lodash-es";
 import ErIcon from "../Icon/Icon.vue";
+
 defineOptions({
   name: "ErButton",
 });
-const props = withDefaults(defineProps<ButtonProps>(), {
-  tag: "button",
-  nativeType: "button",
-  useThrottle: true,
-  throttleDuration: 500,
+
+const props = defineProps({
+  tag: {
+    type: [String, Object],
+    default: "button",
+  },
+  type: String,
+  size: String,
+  plain: Boolean,
+  round: Boolean,
+  circle: Boolean,
+  disabled: Boolean,
+  autofocus: Boolean,
+  nativeType: {
+    type: String,
+    default: "button",
+  },
+  icon: [Object, Array, String],
+  loading: Boolean,
+  loadingIcon: {
+    type: [Object, Array, String],
+    default: "spinner",
+  },
+  useThrottle: {
+    type: Boolean,
+    default: true,
+  },
+  throttleDuration: {
+    type: Number,
+    default: 500,
+  },
 });
-const emits = defineEmits<ButtonEmits>();
+
+const emits = defineEmits(["click"]);
 const slots = defineSlots();
 const buttonGroupCtx = inject(BUTTON_GROUP_CTX_KEY, void 0);
 
-const _ref = ref<HTMLButtonElement>();
+const _ref = ref();
 const size = computed(() => buttonGroupCtx?.size ?? props.size ?? "");
 const type = computed(() => buttonGroupCtx?.type ?? props.type ?? "");
 const disabled = computed(
@@ -27,12 +54,12 @@ const iconStyle = computed(() => ({
   marginRight: slots.default ? "6px" : "0px",
 }));
 
-const handleBtnClick = (e: MouseEvent) => {
+const handleBtnClick = (e) => {
   emits("click", e);
 };
 const handlBtneCLickThrottle = throttle(handleBtnClick, props.throttleDuration);
 
-defineExpose<ButtonInstance>({
+defineExpose({
   ref: _ref,
   disabled,
   size,
@@ -58,7 +85,7 @@ defineExpose<ButtonInstance>({
     :type="tag === 'button' ? nativeType : void 0"
     :autofocus="autofocus"
     @click="
-      (e: MouseEvent) =>
+      (e) =>
         useThrottle ? handlBtneCLickThrottle(e) : handleBtnClick(e)
     "
   >
@@ -66,7 +93,7 @@ defineExpose<ButtonInstance>({
       <slot name="loading">
         <er-icon
           class="loading-icon"
-          :icon="loadingIcon ?? 'spinner'"
+          :icon="loadingIcon"
           :style="iconStyle"
           size="1x"
           spin

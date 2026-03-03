@@ -2,6 +2,14 @@
   "name": "@toy-element/theme",
   "version": "0.0.0",
   "private": true,
-  "main": "index.ts",
-  "types": "index.ts"
+  "type": "module",
+  "main": "index.js",
+  "module": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./index.css": "./index.css"
+  },
+  "sideEffects": [
+    "./index.css"
+  ]
 }

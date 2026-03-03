@@ -2,8 +2,13 @@
   "name": "@toy-element/utils",
   "version": "0.0.0",
   "private": true,
-  "main": "index.ts",
-  "types": "index.ts",
+  "type": "module",
+  "main": "index.js",
+  "module": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "sideEffects": false,
   "peerDependencies": {
     "vue": "^3.5.0"
   },

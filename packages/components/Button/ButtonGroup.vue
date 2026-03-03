@@ -1,12 +1,15 @@
-<script setup lang="ts">
-import type { ButtonGroupProps } from "./types";
+<script setup>
 import { provide, reactive, toRef } from "vue";
 import { BUTTON_GROUP_CTX_KEY } from "./constants";
 
 defineOptions({
   name: "ErButtonGroup",
 });
-const props = defineProps<ButtonGroupProps>();
+const props = defineProps({
+  size: String,
+  type: String,
+  disabled: Boolean,
+});
 
 provide(
   BUTTON_GROUP_CTX_KEY,

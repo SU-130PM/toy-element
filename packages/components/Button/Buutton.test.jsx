@@ -1,7 +1,6 @@
 /** @jsxImportSource vue */
 import { describe, test, it, expect, vi } from "vitest";
 import { mount } from "@vue/test-utils";
-import type { ButtonType, ButtonSize } from "./types";
 
 import Icon from "../Icon/Icon.vue";
 import Button from "./Button.vue";
@@ -100,7 +99,7 @@ describe("Button.vue", () => {
     const types = ["primary", "success", "warning", "danger", "info"];
     types.forEach((type) => {
       const wrapper = mount(Button, {
-        props: { type: type as ButtonType },
+        props: { type },
       });
       expect(wrapper.classes()).toContain(`er-button--${type}`);
     });
@@ -111,7 +110,7 @@ describe("Button.vue", () => {
     const sizes = ["large", "default", "small"];
     sizes.forEach((size) => {
       const wrapper = mount(Button, {
-        props: { size: size as ButtonSize },
+        props: { size },
       });
       expect(wrapper.classes()).toContain(`er-button--${size}`);
     });
@@ -142,7 +141,7 @@ describe("Button.vue", () => {
       props: { nativeType: "submit" },
     });
     expect(wrapper.element.tagName).toBe("BUTTON");
-    expect((wrapper.element as any).type).toBe("submit");
+    expect(wrapper.element.type).toBe("submit");
   });
 
   // Test the click event with and without throttle
@@ -214,7 +213,7 @@ describe("ButtonGroup.vue", () => {
     const sizes = ["large", "default", "small"];
     sizes.forEach((size) => {
       const wrapper = mount(() => (
-        <ButtonGroup size={size as any}>
+        <ButtonGroup size={size}>
           <Button>button 1</Button>
           <Button>button 2</Button>
         </ButtonGroup>
@@ -229,7 +228,7 @@ describe("ButtonGroup.vue", () => {
     const types = ["primary", "success", "warning", "danger", "info"];
     types.forEach((type) => {
       const wrapper = mount(() => (
-        <ButtonGroup type={type as any}>
+        <ButtonGroup type={type}>
           <Button>button 1</Button>
           <Button>button 2</Button>
         </ButtonGroup>

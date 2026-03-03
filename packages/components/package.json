@@ -2,13 +2,23 @@
   "name": "@toy-element/components",
   "version": "0.0.0",
   "private": true,
-  "main": "index.ts",
-  "types": "index.ts",
+  "type": "module",
+  "main": "index.js",
+  "module": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./Button": "./Button/index.js",
+    "./Icon": "./Icon/index.js"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
-    "test": "vitest --config vitest.config.ts --run"
+    "test": "vitest --config vitest.config.js --run"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
+    "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@fortawesome/vue-fontawesome": "^3.1.3",
     "@toy-element/utils": "workspace:*",
     "lodash-es": "^4.17.21"

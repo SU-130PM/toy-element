@@ -1,5 +1,4 @@
-<script setup lang="ts">
-import { type IconProps } from "./types";
+<script setup>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { omit } from "lodash-es";
 import { computed } from "vue";
@@ -9,7 +8,36 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = defineProps<IconProps>();
+const props = defineProps({
+  border: Boolean,
+  fixedWidth: Boolean,
+  flip: String,
+  icon: {
+    type: [Object, Array, String],
+    required: true,
+  },
+  mask: [Object, Array, String],
+  listItem: Boolean,
+  pull: String,
+  pulse: Boolean,
+  rotation: [Number, String],
+  swapOpacity: Boolean,
+  size: String,
+  spin: Boolean,
+  transform: [Object, String],
+  symbol: [Boolean, String],
+  title: String,
+  inverse: Boolean,
+  bounce: Boolean,
+  shake: Boolean,
+  beat: Boolean,
+  fade: Boolean,
+  beatFade: Boolean,
+  spinPulse: Boolean,
+  spinReverse: Boolean,
+  type: String,
+  color: String,
+});
 
 const filterProps = computed(() => omit(props, ["type", "color"]));
 const customStyles = computed(() => ({ color: props.color ?? void 0 }));
