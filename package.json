@@ -9,7 +9,7 @@
     "dev": "corepack pnpm --filter @toy-element/play dev",
     "docs:dev": "corepack pnpm --filter @toy-element/docs dev",
     "docs:build": "corepack pnpm --filter @toy-element/docs build",
-    "test":"echo 'todo'",
+    "test":"corepack pnpm --filter @toy-element/components test",
     "build:play": "corepack pnpm --filter @toy-element/play build",
     "typecheck:play": "corepack pnpm --filter @toy-element/play exec vue-tsc --noEmit",
     "typecheck:core": "corepack pnpm exec tsc -p packages/core/tsconfig.json --noEmit",

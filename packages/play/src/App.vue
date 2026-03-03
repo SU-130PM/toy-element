@@ -2,7 +2,9 @@
 </script>
 
 <template>
-    <er-button />
+  <main class="play-app">
+    <er-button type="primary">Toy Element</er-button>
+  </main>
 </template>
 
 <style scoped>
