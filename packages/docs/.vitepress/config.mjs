@@ -2,7 +2,7 @@ import { defineConfig } from "vitepress";
 
 export default defineConfig({
   title: "Toy Element",
-  description: "Vue3 Component Library",
+  description: "Vue 3 Button Component Library",
   base: "/toy-element/",
   themeConfig: {
     nav: [
