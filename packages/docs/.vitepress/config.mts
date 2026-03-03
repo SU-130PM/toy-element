@@ -1,30 +1,27 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from "vitepress";
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Toy-Element",
-  description: "高仿ElementPlus组件库",
+  title: "Toy Element",
+  description: "Vue3 Component Library",
   base: "/toy-element/",
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: "Guide", link: "/" },
+      { text: "Components", link: "/components/button" },
+      { text: "GitHub", link: "https://github.com/SU-130PM/toy-element" },
     ],
-
     sidebar: [
       {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
+        text: "Components",
+        items: [{ text: "Button", link: "/components/button" }],
+      },
     ],
-
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
-  }
-})
+      { icon: "github", link: "https://github.com/SU-130PM/toy-element" },
+    ],
+    search: {
+      provider: "local",
+    },
+  },
+});
 

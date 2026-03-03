@@ -1,0 +1,25 @@
+:root {
+  --vp-c-brand-1: #409eff;
+  --vp-c-brand-2: #66b1ff;
+  --vp-c-brand-3: #79bbff;
+}
+
+.vp-doc .demo-block {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  padding: 16px;
+  margin: 14px 0;
+  background: var(--vp-c-bg-soft);
+}
+
+.vp-doc .demo-block p {
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+
+.vp-doc .demo-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
