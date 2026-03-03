@@ -1,7 +1,0 @@
-{
-  "name": "@toy-element/hooks",
-  "version": "0.0.0",
-  "private": true,
-  "main": "index.ts",
-  "types": "index.ts"
-}
