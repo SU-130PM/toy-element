@@ -47,7 +47,7 @@ importers:
       '@fortawesome/vue-fontawesome':
         specifier: ^3.1.3
         version: 3.1.3(@fortawesome/fontawesome-svg-core@7.2.0)(vue@3.5.29(typescript@5.2.2))
-      '@toy-element/utils':
+      '@su-130pm/utils':
         specifier: workspace:*
         version: link:../utils
       lodash-es:
@@ -72,13 +72,13 @@ importers:
       '@fortawesome/free-solid-svg-icons':
         specifier: ^7.2.0
         version: 7.2.0
-      '@toy-element/components':
+      '@su-130pm/components':
         specifier: workspace:*
         version: link:../components
-      '@toy-element/theme':
+      '@su-130pm/theme':
         specifier: workspace:*
         version: link:../theme
-      '@toy-element/utils':
+      '@su-130pm/utils':
         specifier: workspace:*
         version: link:../utils
     devDependencies:
@@ -107,7 +107,7 @@ importers:
 
   packages/play:
     dependencies:
-      '@toy-element/core':
+      '@su-130pm/core':
         specifier: workspace:*
         version: link:../core
       vue:

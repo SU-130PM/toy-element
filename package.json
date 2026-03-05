@@ -6,11 +6,11 @@
   "scripts": {
     "init": "bash ./init.shell",
     "install:all": "corepack pnpm install",
-    "dev": "corepack pnpm --filter @toy-element/play dev",
-    "docs:dev": "corepack pnpm --filter @toy-element/docs dev",
-    "docs:build": "corepack pnpm --filter @toy-element/docs build",
-    "test": "corepack pnpm --filter @toy-element/components test",
-    "build:play": "corepack pnpm --filter @toy-element/play build"
+    "dev": "corepack pnpm --filter @su-130pm/play dev",
+    "docs:dev": "corepack pnpm --filter @su-130pm/docs dev",
+    "docs:build": "corepack pnpm --filter @su-130pm/docs build",
+    "test": "corepack pnpm --filter @su-130pm/components test",
+    "build:play": "corepack pnpm --filter @su-130pm/play build"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "5.0.4",
@@ -24,3 +24,4 @@
     "vitest": "1.4.0"
   }
 }
+

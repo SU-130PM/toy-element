@@ -1,7 +1,10 @@
 {
-    "name": "@toy-element/core",
-    "version": "0.0.0",
-    "private": true,
+    "name": "@su-130pm/core",
+    "version": "0.1.0",
+    "private": false,
+    "publishConfig": {
+        "access": "public"
+    },
     "type": "module",
     "main": "index.js",
     "module": "index.js",
@@ -14,9 +17,9 @@
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^7.2.0",
         "@fortawesome/free-solid-svg-icons": "^7.2.0",
-        "@toy-element/components": "workspace:*",
-        "@toy-element/theme": "workspace:*",
-        "@toy-element/utils": "workspace:*"
+        "@su-130pm/components": "workspace:*",
+        "@su-130pm/theme": "workspace:*",
+        "@su-130pm/utils": "workspace:*"
     },
     "peerDependencies": {
         "vue": "^3.5.0"
@@ -25,3 +28,4 @@
         "vue": "^3.5.18"
     }
 }
+

@@ -1,7 +1,10 @@
 {
-  "name": "@toy-element/utils",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@su-130pm/utils",
+  "version": "0.1.0",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "index.js",
   "module": "index.js",
@@ -19,3 +22,4 @@
     "vue": "^3.5.18"
   }
 }
+

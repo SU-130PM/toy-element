@@ -1,5 +1,5 @@
 {
-  "name": "@toy-element/docs",
+  "name": "@su-130pm/docs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -20,3 +20,4 @@
     "vitepress": "^1.6.4"
   }
 }
+

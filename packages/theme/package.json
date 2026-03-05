@@ -1,7 +1,10 @@
 {
-  "name": "@toy-element/theme",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@su-130pm/theme",
+  "version": "0.1.0",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "index.js",
   "module": "index.js",
@@ -13,3 +16,4 @@
     "./index.css"
   ]
 }
+

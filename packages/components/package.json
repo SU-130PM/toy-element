@@ -1,7 +1,10 @@
 {
-  "name": "@toy-element/components",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@su-130pm/components",
+  "version": "0.1.0",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "index.js",
   "module": "index.js",
@@ -20,7 +23,7 @@
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@fortawesome/vue-fontawesome": "^3.1.3",
-    "@toy-element/utils": "workspace:*",
+    "@su-130pm/utils": "workspace:*",
     "lodash-es": "^4.17.21"
   },
   "peerDependencies": {
@@ -32,3 +35,4 @@
     "vue": "^3.5.18"
   }
 }
+
