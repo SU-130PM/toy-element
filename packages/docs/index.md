@@ -3,11 +3,11 @@ layout: home
 
 hero:
   name: "Toy Element"
-  text: "Vue 3 Components for Everyday Product UI"
-  tagline: 从 Button 到 Collapse，逐步搭建一个可发布、可测试、可维护的组件库。
+  text: "高仿 ElementPlus"
+  tagline: 正在逐步搭建一个可发布、可测试、可维护的组件库。
   actions:
     - theme: brand
-      text: 查看 Collapse
+      text: 开始使用
       link: /components/collapse
     - theme: alt
       text: GitHub
