@@ -9,7 +9,7 @@
   border-radius: 10px;
   padding: 16px;
   margin: 14px 0;
-  background: var(--vp-c-bg-soft);
+  background: var(--vp-c-bg);
 }
 
 .vp-doc .demo-block p {
