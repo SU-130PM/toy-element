@@ -1,6 +1,6 @@
 {
   "name": "@su-130pm/components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -11,6 +11,7 @@
   "exports": {
     ".": "./index.js",
     "./Button": "./Button/index.js",
+    "./Collapse": "./Collapse/index.js",
     "./Icon": "./Icon/index.js"
   },
   "sideEffects": [
@@ -35,4 +36,3 @@
     "vue": "^3.5.18"
   }
 }
-

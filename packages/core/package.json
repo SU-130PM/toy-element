@@ -1,31 +1,30 @@
 {
-    "name": "@su-130pm/core",
-    "version": "0.1.0",
-    "private": false,
-    "publishConfig": {
-        "access": "public"
-    },
-    "type": "module",
-    "main": "index.js",
-    "module": "index.js",
-    "exports": {
-        ".": "./index.js"
-    },
-    "sideEffects": [
-        "**/*.css"
-    ],
-    "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^7.2.0",
-        "@fortawesome/free-solid-svg-icons": "^7.2.0",
-        "@su-130pm/components": "workspace:*",
-        "@su-130pm/theme": "workspace:*",
-        "@su-130pm/utils": "workspace:*"
-    },
-    "peerDependencies": {
-        "vue": "^3.5.0"
-    },
-    "devDependencies": {
-        "vue": "^3.5.18"
-    }
+  "name": "@su-130pm/core",
+  "version": "0.1.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "main": "index.js",
+  "module": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.2.0",
+    "@fortawesome/free-solid-svg-icons": "^7.2.0",
+    "@su-130pm/components": "workspace:*",
+    "@su-130pm/theme": "workspace:*",
+    "@su-130pm/utils": "workspace:*"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "vue": "^3.5.18"
+  }
 }
-

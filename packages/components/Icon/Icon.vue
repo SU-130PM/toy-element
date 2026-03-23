@@ -57,3 +57,37 @@ const customStyles = computed(() => ({ color: props.color ?? void 0 }));
 <style scoped>
 @import "./style.css";
 </style>
+
+
+<!-- 
+<ErIcon color="red" /> 是怎么变成 style="color:red"
+
+现在我们按执行流程走一遍。
+
+① 外部使用
+<ErIcon color="red" />
+② color 被 defineProps 接收
+const props = defineProps({
+  color: String
+})
+
+于是：
+
+props.color === "red"
+③ customStyles 计算
+const customStyles = computed(() => ({
+  color: props.color ?? void 0
+}));
+
+变成：
+
+{ color: "red" }
+④ 绑定到 <i>
+:style="customStyles"
+
+Vue 自动渲染成：
+
+<i style="color: red;">
+
+这就是完整链路。 
+-->

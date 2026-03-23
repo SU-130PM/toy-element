@@ -1,19 +1,22 @@
-import { defineConfig } from "vitepress";
+﻿import { defineConfig } from "vitepress";
 
 export default defineConfig({
   title: "Toy Element",
-  description: "Vue 3 Button Component Library",
+  description: "Vue 3 component library with Button, Collapse, and Icon primitives.",
   base: "/toy-element/",
   themeConfig: {
     nav: [
       { text: "Guide", link: "/" },
-      { text: "Components", link: "/components/button" },
+      { text: "Components", link: "/components/collapse" },
       { text: "GitHub", link: "https://github.com/SU-130PM/toy-element" },
     ],
     sidebar: [
       {
         text: "Components",
-        items: [{ text: "Button", link: "/components/button" }],
+        items: [
+          { text: "Collapse", link: "/components/collapse" },
+          { text: "Button", link: "/components/button" },
+        ],
       },
     ],
     socialLinks: [
@@ -24,4 +27,3 @@ export default defineConfig({
     },
   },
 });
-

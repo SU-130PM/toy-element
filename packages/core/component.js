@@ -1,4 +1,9 @@
-import { ErButton, ErButtonGroup, ErIcon } from "@su-130pm/components";
+﻿import {
+  ErButton,
+  ErButtonGroup,
+  ErCollapse,
+  ErCollapseItem,
+  ErIcon,
+} from "@su-130pm/components";
 
-export default [ErButton, ErButtonGroup, ErIcon];
-
+export default [ErButton, ErButtonGroup, ErCollapse, ErCollapseItem, ErIcon];

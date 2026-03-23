@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --vp-c-brand-1: #409eff;
   --vp-c-brand-2: #66b1ff;
   --vp-c-brand-3: #79bbff;
@@ -22,4 +22,13 @@
   flex-wrap: wrap;
   gap: 12px;
   align-items: center;
+}
+
+.vp-doc .demo-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.vp-doc .demo-stack .er-collapse {
+  width: 100%;
 }

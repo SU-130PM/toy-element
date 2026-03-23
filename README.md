@@ -1,83 +1,48 @@
-# Toy Element
+﻿# Toy Element
 
-Toy Element 是一个基于 Vue 3 的组件库 Monorepo（JavaScript 版本），使用 `pnpm workspace` 管理多包开发。  
-当前主打组件为 `Button`，并配套 `Icon`、`ButtonGroup`、主题样式、文档站与本地演示环境。
+Toy Element 是一个基于 Vue 3 的组件库 Monorepo，使用 `pnpm workspace` 管理 `components`、`core`、`theme`、`utils`、`docs` 和 `play` 多个包。当前仓库已经提供 `Button`、`ButtonGroup`、`Icon` 与 `Collapse` 组件，并配套测试、文档站和本地演示环境。
 
-## 1. 项目目标
+## 在线地址
 
-- 提供可复用、可扩展的 Vue 3 组件库基础架构
-- 支持组件库全量安装与按需引入
-- 提供统一主题样式能力
-- 提供 `play` 调试应用与 `docs` 文档站点，便于边开发边验证
+- GitHub: https://github.com/SU-130PM/toy-element
+- Docs: https://su-130pm.github.io/toy-element/
 
-## 2. 技术栈
+文档地址采用 GitHub Pages 路径，对应文档站配置里的 `base: "/toy-element/"`。
 
-- Vue 3
-- Vite 5
-- VitePress
-- Vitest
-- pnpm workspace
-- Font Awesome（图标）
-
-## 3. 环境要求
-
-- Node.js 18+
-- pnpm 9（推荐通过 `corepack` 使用）
-
-## 4. 安装依赖
-
-```bash
-corepack pnpm install
-```
-
-## 5. 仓库结构
+## 仓库结构
 
 ```text
 packages/
-  components/   # 组件源码与测试（Button、Icon 等）
-  core/         # 组件库入口（install）、统一导出
-  theme/        # 主题样式与全局 CSS
-  utils/        # 通用工具（withInstall、makeInstaller）
-  play/         # 本地演示应用（Vite）
-  docs/         # 文档站点（VitePress）
+  components/   # 组件源码、样式与测试
+  core/         # 组件库入口与全量安装
+  docs/         # VitePress 文档站
+  play/         # 本地演示应用
+  theme/        # 主题样式
+  utils/        # withInstall / makeInstaller 等工具
 ```
 
-各包职责简述：
+## 当前组件
 
-- `@su-130pm/components`：组件定义与导出
-- `@su-130pm/core`：整库安装入口，内部注入主题与组件
-- `@su-130pm/theme`：样式资源
-- `@su-130pm/utils`：安装器与工具函数
-- `@su-130pm/play`：手动联调和效果验证
-- `@su-130pm/docs`：组件文档网站
+- `ErButton`
+- `ErButtonGroup`
+- `ErIcon`
+- `ErCollapse`
+- `ErCollapseItem`
 
-## 6. 常用开发命令
-
-在仓库根目录执行：
+## 开发命令
 
 ```bash
-# 安装全部依赖
-corepack pnpm run install:all
-
-# 启动 play 应用
+corepack pnpm install
 corepack pnpm run dev
-
-# 启动文档站
 corepack pnpm run docs:dev
-
-# 组件测试
 corepack pnpm run test
-
-# 构建 play
 corepack pnpm run build:play
-
-# 构建 docs
 corepack pnpm run docs:build
 ```
 
-## 7. 在业务项目中使用
+## 使用方式
 
-### 7.1 通过 core 全量安装（推荐入门）
+### 全量安装
 
 ```bash
 pnpm add @su-130pm/core
@@ -91,13 +56,7 @@ import ToyElement from "@su-130pm/core";
 createApp(App).use(ToyElement).mount("#app");
 ```
 
-`@su-130pm/core` 会统一处理：
-
-- 组件安装（`ErButton`、`ErButtonGroup`、`ErIcon`）
-- 主题样式引入（`@su-130pm/theme/index.css`）
-- Font Awesome 必要图标注册
-
-### 7.2 按需引入组件
+### 按需引入
 
 ```bash
 pnpm add @su-130pm/components
@@ -106,31 +65,17 @@ pnpm add @su-130pm/components
 ```js
 import { createApp } from "vue";
 import App from "./App.vue";
-import { ErButton } from "@su-130pm/components";
+import { ErCollapse, ErCollapseItem } from "@su-130pm/components";
 
 const app = createApp(App);
-app.use(ErButton);
+app.use(ErCollapse);
+app.use(ErCollapseItem);
 app.mount("#app");
 ```
 
-如按需使用，建议自行确认样式引入策略（可结合 `@su-130pm/theme`）。
+## 发布顺序
 
-## 8. 文档与演示
-
-- 本地文档入口：`/components/button`
-- 文档构建工具：VitePress
-- Play 应用用于本地快速验证真实交互效果
-
-## 9. 包发布说明
-
-当前已发布的公共包：
-
-- `@su-130pm/utils`
-- `@su-130pm/theme`
-- `@su-130pm/components`
-- `@su-130pm/core`
-
-发布顺序建议：
+推荐按下面顺序发版，保证依赖引用关系稳定：
 
 ```bash
 corepack pnpm --filter @su-130pm/utils publish --no-git-checks
@@ -139,14 +84,17 @@ corepack pnpm --filter @su-130pm/components publish --no-git-checks
 corepack pnpm --filter @su-130pm/core publish --no-git-checks
 ```
 
-## 10. 贡献建议
+本次 `Collapse` 组件接入后，至少需要同步发布：
 
-- 新增组件优先放在 `packages/components`
-- 组件导出后同步更新 `packages/core/component.js`
-- 变更后至少完成一次 `play` 手动验证和 `test` 自动测试
-- 更新文档示例，确保文档与实现一致
+- `@su-130pm/components`
+- `@su-130pm/core`
 
-## 11. License
+## 开发约定
+
+- 组件新增后，同时更新 `components` 导出、`core` 安装入口、文档站和 README。
+- 发布前至少完成一次组件测试、`play` 构建和 `docs` 构建。
+- 如果仓库里存在与你当前任务无关的本地修改，优先只提交本次变更涉及的文件。
+
+## License
 
 MIT
-
