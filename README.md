@@ -1,8 +1,8 @@
 # Toy Element
 
-Toy Element is a Vue 3 component library monorepo built with `pnpm workspace`.
+Toy Element 是一个基于 Vue 3 的组件库 Monorepo，使用 `pnpm workspace` 管理多个子包。
 
-The project currently includes:
+当前仓库已经包含以下组件：
 
 - `ErButton`
 - `ErButtonGroup`
@@ -10,31 +10,31 @@ The project currently includes:
 - `ErCollapse`
 - `ErCollapseItem`
 
-Online resources:
+在线地址：
 
-- GitHub: `https://github.com/SU-130PM/toy-element`
-- Docs: `https://su-130pm.github.io/toy-element/`
+- GitHub：`https://github.com/SU-130PM/toy-element`
+- 文档站：`https://su-130pm.github.io/toy-element/`
 
-## Published Packages
+## 已发布包
 
-The repository contains four publishable packages:
+当前仓库包含 4 个可发布 npm 包：
 
-- `@su-130pm/core`: recommended entry, full install for application usage
-- `@su-130pm/components`: component exports for on-demand usage
-- `@su-130pm/theme`: shared theme tokens and global styles
-- `@su-130pm/utils`: internal install helpers used by the library
+- `@su-130pm/core`：推荐使用的入口，适合业务项目直接全量安装
+- `@su-130pm/components`：组件导出包，适合按需引入
+- `@su-130pm/theme`：主题样式与全局变量
+- `@su-130pm/utils`：组件库内部工具包
 
-## Quick Start
+## 快速开始
 
-### Recommended: full install
+### 推荐方式：全量安装
 
-Install the core package:
+安装：
 
 ```bash
 pnpm add @su-130pm/core
 ```
 
-Register the library in your app:
+在入口文件注册组件库：
 
 ```js
 import { createApp } from "vue";
@@ -44,34 +44,34 @@ import ToyElement from "@su-130pm/core";
 createApp(App).use(ToyElement).mount("#app");
 ```
 
-Use components in templates:
+组件使用示例：
 
 ```vue
 <template>
-  <er-button type="primary">Primary</er-button>
+  <er-button type="primary">主要按钮</er-button>
 
   <er-button-group type="success">
-    <er-button>Left</er-button>
-    <er-button>Right</er-button>
+    <er-button>左侧</er-button>
+    <er-button>右侧</er-button>
   </er-button-group>
 
   <er-collapse>
-    <er-collapse-item name="a" title="Section A">
-      Content A
+    <er-collapse-item name="a" title="折叠面板 A">
+      内容 A
     </er-collapse-item>
   </er-collapse>
 </template>
 ```
 
-### On-demand usage
+### 按需引入
 
-If you only want specific components, install:
+如果你只想注册部分组件，可以安装：
 
 ```bash
 pnpm add @su-130pm/components @su-130pm/theme
 ```
 
-Then register the components you need:
+然后按需注册：
 
 ```js
 import { createApp } from "vue";
@@ -86,7 +86,7 @@ app.use(ErButtonGroup);
 app.mount("#app");
 ```
 
-If you use icon strings, loading buttons, or collapse arrows outside `@su-130pm/core`, register the needed Font Awesome icons yourself:
+如果你在按需模式下使用字符串图标、`loading` 按钮或折叠面板箭头，还需要手动注册默认图标：
 
 ```js
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -95,95 +95,99 @@ import { faAngleRight, faSpinner } from "@fortawesome/free-solid-svg-icons";
 library.add(faSpinner, faAngleRight);
 ```
 
-## Package Notes
+## 各包说明
 
 ### `@su-130pm/core`
 
-Use this when you want the simplest integration:
+推荐业务项目优先使用这个包。
 
-- global install via `app.use()`
-- theme css included automatically
-- default icons registered automatically
+它会自动完成：
+
+- `app.use()` 全量注册组件
+- 自动引入主题样式
+- 自动注册默认图标
 
 ### `@su-130pm/components`
 
-Use this when you want on-demand registration:
+适合按需引入场景。
 
-- import only the components you need
-- theme css must be imported manually
-- icon registration must be handled manually when needed
+特点：
+
+- 可以只引入需要的组件
+- 需要手动引入主题样式
+- 涉及默认图标时需要手动注册 Font Awesome 图标
 
 ### `@su-130pm/theme`
 
-Provides shared tokens and styles:
+提供全局样式基础，包括：
 
-- reset styles
-- css variables
-- component visual foundation
+- reset 样式
+- CSS 变量
+- 组件公共视觉基础
 
 ### `@su-130pm/utils`
 
-Internal package used by the library:
+这是组件库内部工具包，主要包含：
 
 - `withInstall`
 - `makeInstaller`
 
-Application projects usually do not need to install it directly.
+普通业务项目通常不需要直接安装它。
 
-## Local Development
+## 本地开发
 
-Install dependencies:
+安装依赖：
 
 ```bash
 corepack pnpm install
 ```
 
-Run the local playground:
+启动本地演示项目：
 
 ```bash
 corepack pnpm run dev
 ```
 
-Run the docs site:
+启动文档站：
 
 ```bash
 corepack pnpm run docs:dev
 ```
 
-Run component tests:
+运行组件测试：
 
 ```bash
 corepack pnpm run test
 ```
 
-Build the playground:
+构建本地演示项目：
 
 ```bash
 corepack pnpm run build:play
 ```
 
-Build docs:
+构建文档站：
 
 ```bash
 corepack pnpm run docs:build
 ```
 
-Build publishable package output:
+生成 npm 发布产物：
 
 ```bash
 corepack pnpm run build:packages
 ```
 
-## Repository Structure
+## 仓库结构
 
 ```text
 packages/
-  components/   component source, styles, tests
-  core/         full-install entry package
-  docs/         vitepress docs site
-  play/         local demo app
-  theme/        theme variables and shared css
-  utils/        install helpers
+  components/   组件源码、样式、测试
+  core/         全量安装入口
+  docs/         VitePress 文档站
+  play/         本地演示项目
+  theme/        主题样式与变量
+  utils/        安装工具与公共方法
 scripts/
   build-packages.mjs
 .github/workflows/
@@ -191,24 +195,24 @@ scripts/
   publish-npm.yaml
 ```
 
-## Release Workflow
+## 发布流程
 
-### Local release check
+### 发布前检查
 
-Before publishing, run:
+正式发布前建议先执行：
 
 ```bash
 corepack pnpm run release
 ```
 
-This does two things:
+这条命令会做两件事：
 
-- runs the component test suite
-- generates `dist/` output for publishable packages
+- 运行组件测试
+- 生成四个包的 `dist/` 发布目录
 
-### Local publish
+### 本地发布
 
-If you publish from your machine, the safe order is:
+本地手动发布时，建议按依赖顺序执行：
 
 ```bash
 corepack pnpm publish ./packages/utils/dist --access public --no-git-checks
@@ -217,28 +221,41 @@ corepack pnpm publish ./packages/components/dist --access public --no-git-checks
 corepack pnpm publish ./packages/core/dist --access public --no-git-checks
 ```
 
-If your npm account uses 2FA for publish, add `--otp=XXXXXX` to each command.
+如果你的 npm 账号开启了发布 2FA，需要额外带上：
 
-### GitHub Actions publish
+```bash
+--otp=你的6位验证码
+```
 
-The repository also includes `.github/workflows/publish-npm.yaml`.
+### GitHub Actions 自动发布
 
-To use it:
+仓库已经包含自动发布工作流：
 
-1. Add `NPM_TOKEN` in `GitHub -> Settings -> Secrets and variables -> Actions`
-2. Ensure the token has publish permission for the `@su-130pm` scope
-3. Trigger the workflow manually from the Actions page, or push a `v*` tag
+- `.github/workflows/publish-npm.yaml`
 
-## Versioning Notes
+使用前需要先配置：
 
-npm does not allow overwriting an already published version.
+1. 打开 `GitHub -> Settings -> Secrets and variables -> Actions`
+2. 新增仓库密钥：`NPM_TOKEN`
+3. 确保该 token 对 `@su-130pm` scope 具有发布权限
 
-Before each release:
+触发方式有两种：
 
-- bump package versions in `packages/utils/package.json`
-- bump package versions in `packages/theme/package.json`
-- bump package versions in `packages/components/package.json`
-- bump package versions in `packages/core/package.json`
+1. 在 GitHub Actions 页面手动运行 `Publish npm packages`
+2. 推送符合 `v*` 规则的 tag
+
+## 版本说明
+
+npm 不允许覆盖已发布的版本。
+
+所以每次发布前，都要先修改以下文件中的版本号：
+
+- `packages/utils/package.json`
+- `packages/theme/package.json`
+- `packages/components/package.json`
+- `packages/core/package.json`
+
+建议同一轮发布统一升级版本，避免内部依赖版本不一致。
 
 ## License
 
