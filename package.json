@@ -10,7 +10,15 @@
     "docs:dev": "corepack pnpm --filter @su-130pm/docs dev",
     "docs:build": "corepack pnpm --filter @su-130pm/docs build",
     "test": "corepack pnpm --filter @su-130pm/components test",
-    "build:play": "corepack pnpm --filter @su-130pm/play build"
+    "build:play": "corepack pnpm --filter @su-130pm/play build",
+    "build:packages": "node ./scripts/build-packages.mjs",
+    "release": "corepack pnpm run test && corepack pnpm run build:packages",
+    "publish:utils": "corepack pnpm --dir packages/utils/dist publish --access public --no-git-checks",
+    "publish:theme": "corepack pnpm --dir packages/theme/dist publish --access public --no-git-checks",
+    "publish:components": "corepack pnpm --dir packages/components/dist publish --access public --no-git-checks",
+    "publish:core": "corepack pnpm --dir packages/core/dist publish --access public --no-git-checks",
+    "publish:packages": "corepack pnpm run publish:utils && corepack pnpm run publish:theme && corepack pnpm run publish:components && corepack pnpm run publish:core",
+    "publish:release": "corepack pnpm run release && corepack pnpm run publish:packages"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "5.0.4",
