@@ -1,27 +1,8 @@
-﻿# Toy Element
+# Toy Element
 
-Toy Element 是一个基于 Vue 3 的组件库 Monorepo，使用 `pnpm workspace` 管理 `components`、`core`、`theme`、`utils`、`docs` 和 `play` 多个包。当前仓库已经提供 `Button`、`ButtonGroup`、`Icon` 与 `Collapse` 组件，并配套测试、文档站和本地演示环境。
+Toy Element is a Vue 3 component library monorepo built with `pnpm workspace`.
 
-## 在线地址
-
-- GitHub: https://github.com/SU-130PM/toy-element
-- Docs: https://su-130pm.github.io/toy-element/
-
-文档地址采用 GitHub Pages 路径，对应文档站配置里的 `base: "/toy-element/"`。
-
-## 仓库结构
-
-```text
-packages/
-  components/   # 组件源码、样式与测试
-  core/         # 组件库入口与全量安装
-  docs/         # VitePress 文档站
-  play/         # 本地演示应用
-  theme/        # 主题样式
-  utils/        # withInstall / makeInstaller 等工具
-```
-
-## 当前组件
+The project currently includes:
 
 - `ErButton`
 - `ErButtonGroup`
@@ -29,24 +10,31 @@ packages/
 - `ErCollapse`
 - `ErCollapseItem`
 
-## 开发命令
+Online resources:
 
-```bash
-corepack pnpm install
-corepack pnpm run dev
-corepack pnpm run docs:dev
-corepack pnpm run test
-corepack pnpm run build:play
-corepack pnpm run docs:build
-```
+- GitHub: `https://github.com/SU-130PM/toy-element`
+- Docs: `https://su-130pm.github.io/toy-element/`
 
-## 使用方式
+## Published Packages
 
-### 全量安装
+The repository contains four publishable packages:
+
+- `@su-130pm/core`: recommended entry, full install for application usage
+- `@su-130pm/components`: component exports for on-demand usage
+- `@su-130pm/theme`: shared theme tokens and global styles
+- `@su-130pm/utils`: internal install helpers used by the library
+
+## Quick Start
+
+### Recommended: full install
+
+Install the core package:
 
 ```bash
 pnpm add @su-130pm/core
 ```
+
+Register the library in your app:
 
 ```js
 import { createApp } from "vue";
@@ -56,44 +44,201 @@ import ToyElement from "@su-130pm/core";
 createApp(App).use(ToyElement).mount("#app");
 ```
 
-### 按需引入
+Use components in templates:
+
+```vue
+<template>
+  <er-button type="primary">Primary</er-button>
+
+  <er-button-group type="success">
+    <er-button>Left</er-button>
+    <er-button>Right</er-button>
+  </er-button-group>
+
+  <er-collapse>
+    <er-collapse-item name="a" title="Section A">
+      Content A
+    </er-collapse-item>
+  </er-collapse>
+</template>
+```
+
+### On-demand usage
+
+If you only want specific components, install:
 
 ```bash
-pnpm add @su-130pm/components
+pnpm add @su-130pm/components @su-130pm/theme
 ```
+
+Then register the components you need:
 
 ```js
 import { createApp } from "vue";
 import App from "./App.vue";
-import { ErCollapse, ErCollapseItem } from "@su-130pm/components";
+import { ErButton, ErButtonGroup } from "@su-130pm/components";
+import "@su-130pm/theme/index.css";
 
 const app = createApp(App);
-app.use(ErCollapse);
-app.use(ErCollapseItem);
+
+app.use(ErButton);
+app.use(ErButtonGroup);
 app.mount("#app");
 ```
 
-## 发布顺序
+If you use icon strings, loading buttons, or collapse arrows outside `@su-130pm/core`, register the needed Font Awesome icons yourself:
 
-推荐按下面顺序发版，保证依赖引用关系稳定：
+```js
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faAngleRight, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-```bash
-corepack pnpm --filter @su-130pm/utils publish --no-git-checks
-corepack pnpm --filter @su-130pm/theme publish --no-git-checks
-corepack pnpm --filter @su-130pm/components publish --no-git-checks
-corepack pnpm --filter @su-130pm/core publish --no-git-checks
+library.add(faSpinner, faAngleRight);
 ```
 
-本次 `Collapse` 组件接入后，至少需要同步发布：
+## Package Notes
 
-- `@su-130pm/components`
-- `@su-130pm/core`
+### `@su-130pm/core`
 
-## 开发约定
+Use this when you want the simplest integration:
 
-- 组件新增后，同时更新 `components` 导出、`core` 安装入口、文档站和 README。
-- 发布前至少完成一次组件测试、`play` 构建和 `docs` 构建。
-- 如果仓库里存在与你当前任务无关的本地修改，优先只提交本次变更涉及的文件。
+- global install via `app.use()`
+- theme css included automatically
+- default icons registered automatically
+
+### `@su-130pm/components`
+
+Use this when you want on-demand registration:
+
+- import only the components you need
+- theme css must be imported manually
+- icon registration must be handled manually when needed
+
+### `@su-130pm/theme`
+
+Provides shared tokens and styles:
+
+- reset styles
+- css variables
+- component visual foundation
+
+### `@su-130pm/utils`
+
+Internal package used by the library:
+
+- `withInstall`
+- `makeInstaller`
+
+Application projects usually do not need to install it directly.
+
+## Local Development
+
+Install dependencies:
+
+```bash
+corepack pnpm install
+```
+
+Run the local playground:
+
+```bash
+corepack pnpm run dev
+```
+
+Run the docs site:
+
+```bash
+corepack pnpm run docs:dev
+```
+
+Run component tests:
+
+```bash
+corepack pnpm run test
+```
+
+Build the playground:
+
+```bash
+corepack pnpm run build:play
+```
+
+Build docs:
+
+```bash
+corepack pnpm run docs:build
+```
+
+Build publishable package output:
+
+```bash
+corepack pnpm run build:packages
+```
+
+## Repository Structure
+
+```text
+packages/
+  components/   component source, styles, tests
+  core/         full-install entry package
+  docs/         vitepress docs site
+  play/         local demo app
+  theme/        theme variables and shared css
+  utils/        install helpers
+scripts/
+  build-packages.mjs
+.github/workflows/
+  test-and-deploy.yaml
+  publish-npm.yaml
+```
+
+## Release Workflow
+
+### Local release check
+
+Before publishing, run:
+
+```bash
+corepack pnpm run release
+```
+
+This does two things:
+
+- runs the component test suite
+- generates `dist/` output for publishable packages
+
+### Local publish
+
+If you publish from your machine, the safe order is:
+
+```bash
+corepack pnpm publish ./packages/utils/dist --access public --no-git-checks
+corepack pnpm publish ./packages/theme/dist --access public --no-git-checks
+corepack pnpm publish ./packages/components/dist --access public --no-git-checks
+corepack pnpm publish ./packages/core/dist --access public --no-git-checks
+```
+
+If your npm account uses 2FA for publish, add `--otp=XXXXXX` to each command.
+
+### GitHub Actions publish
+
+The repository also includes `.github/workflows/publish-npm.yaml`.
+
+To use it:
+
+1. Add `NPM_TOKEN` in `GitHub -> Settings -> Secrets and variables -> Actions`
+2. Ensure the token has publish permission for the `@su-130pm` scope
+3. Trigger the workflow manually from the Actions page, or push a `v*` tag
+
+## Versioning Notes
+
+npm does not allow overwriting an already published version.
+
+Before each release:
+
+- bump package versions in `packages/utils/package.json`
+- bump package versions in `packages/theme/package.json`
+- bump package versions in `packages/components/package.json`
+- bump package versions in `packages/core/package.json`
 
 ## License
 
