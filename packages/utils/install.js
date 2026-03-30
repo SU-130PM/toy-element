@@ -37,6 +37,7 @@ export const withInstall = (component) => {
 
   return component;
 };
+
 // 原组件：
 // Button = {
 //   name:"ErButton"
