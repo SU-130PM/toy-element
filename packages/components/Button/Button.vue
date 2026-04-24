@@ -57,7 +57,7 @@ const iconStyle = computed(() => ({
 const handleBtnClick = (e) => {
   emits("click", e);
 };
-const handlBtneCLickThrottle = throttle(handleBtnClick, props.throttleDuration);
+const handleButtonClickThrottle = throttle(handleBtnClick, props.throttleDuration);
 
 defineExpose({
   ref: _ref,
@@ -86,7 +86,7 @@ defineExpose({
     :autofocus="autofocus"
     @click="
       (e) =>
-        useThrottle ? handlBtneCLickThrottle(e) : handleBtnClick(e)
+        useThrottle ? handleButtonClickThrottle(e) : handleBtnClick(e)
     "
   >
     <template v-if="loading">
