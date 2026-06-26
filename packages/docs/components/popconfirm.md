@@ -21,13 +21,12 @@
 ```
 
 <script setup>
-import { getCurrentInstance } from "vue";
-const { proxy } = getCurrentInstance();
+import message from "../../../components/Message/methods.js";
 function handleConfirm() {
-  proxy.$message({ message: "已确认删除", type: "success" });
+  message({ message: "已确认删除", type: "success" });
 }
 function handleCancel() {
-  proxy.$message({ message: "已取消", type: "info" });
+  message({ message: "已取消", type: "info" });
 }
 </script>
 

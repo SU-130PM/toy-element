@@ -16,28 +16,26 @@
 
 ```vue
 <script setup>
-import { getCurrentInstance } from "vue";
-const { proxy } = getCurrentInstance();
+import message from "path/to/Message/methods.js";
 </script>
 
 <template>
-  <er-button @click="proxy.$message({ message: 'Info 提示', type: 'info' })">
+  <er-button @click="message({ message: 'Info 提示', type: 'info' })">
     Info
   </er-button>
 </template>
 ```
 
 <script setup>
-import { getCurrentInstance } from "vue";
-const { proxy } = getCurrentInstance();
+import message from "../../../components/Message/methods.js";
 function showMsg(type) {
-  proxy.$message({ message: `${type} 消息提示`, type });
+  message({ message: `${type} 消息提示`, type });
 }
 </script>
 
 ## Message API
 
-调用 `$message(options)` 或 `$message.info(options)` 等，返回一个 handler，可用 `handler.close()` 手动关闭。
+调用 `message(options)` 或 `message.info(options)` 等，返回一个 handler，可用 `handler.close()` 手动关闭。
 
 | 参数名 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

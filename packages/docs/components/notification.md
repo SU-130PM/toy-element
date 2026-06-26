@@ -14,24 +14,27 @@
 </div>
 
 ```vue
-proxy.$notify({
-  title: "通知标题",
-  message: "通知内容",
-  type: "success",
-});
+<script setup>
+import notification from "path/to/Notification/methods.js";
+</script>
+
+<template>
+  <er-button @click="notification({ title: '通知', message: '内容', type: 'success' })">
+    通知
+  </er-button>
+</template>
 ```
 
 <script setup>
-import { getCurrentInstance } from "vue";
-const { proxy } = getCurrentInstance();
+import notification from "../../../components/Notification/methods.js";
 function showNotify(type) {
-  proxy.$notify({ title: `${type} 通知`, message: `这是一条 ${type} 类型的通知`, type });
+  notification({ title: `${type} 通知`, message: `这是一条 ${type} 类型的通知`, type });
 }
 </script>
 
 ## Notification API
 
-调用 `$notify(options)` 或 `$notify.success(options)` 等。
+调用 `notification(options)` 或 `notification.success(options)` 等。
 
 | 参数名 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

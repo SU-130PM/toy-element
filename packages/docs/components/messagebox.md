@@ -13,36 +13,41 @@
 </div>
 
 ```vue
-proxy.$alert("这是一条 Alert 消息", "提示", {
-  confirmButtonText: "确定",
-});
+<script setup>
+import msgbox from "path/to/MessageBox/methods.js";
+</script>
+
+<template>
+  <er-button @click="msgbox.alert('消息', '提示')">Alert</er-button>
+</template>
 ```
 
 <script setup>
-import { getCurrentInstance } from "vue";
-const { proxy } = getCurrentInstance();
+import msgbox from "../../../components/MessageBox/methods.js";
+import message from "../../../components/Message/methods.js";
+
 function handleAlert() {
-  proxy.$alert("这是一条 Alert 消息", "提示", { confirmButtonText: "确定" });
+  msgbox.alert("这是一条 Alert 消息", "提示", { confirmButtonText: "确定" });
 }
 function handleConfirm() {
-  proxy.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+  msgbox.confirm("此操作将永久删除该文件, 是否继续?", "提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
     type: "warning",
   }).then(() => {
-    proxy.$message({ message: "删除成功", type: "success" });
+    message({ message: "删除成功", type: "success" });
   }).catch(() => {
-    proxy.$message({ message: "已取消删除", type: "info" });
+    message({ message: "已取消删除", type: "info" });
   });
 }
 function handlePrompt() {
-  proxy.$prompt("请输入邮箱", "提示", {
+  msgbox.prompt("请输入邮箱", "提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
   }).then(({ value }) => {
-    proxy.$message({ message: `你的邮箱是: ${value}`, type: "success" });
+    message({ message: `你的邮箱是: ${value}`, type: "success" });
   }).catch(() => {
-    proxy.$message({ message: "取消输入", type: "info" });
+    message({ message: "取消输入", type: "info" });
   });
 }
 </script>
@@ -51,9 +56,9 @@ function handlePrompt() {
 
 | 方法 | 说明 | 返回值 |
 | --- | --- | --- |
-| `$alert(message, title, options)` | 提示 | `Promise` |
-| `$confirm(message, title, options)` | 确认 | `Promise` |
-| `$prompt(message, title, options)` | 输入 | `Promise` |
+| `msgbox.alert(message, title, options)` | 提示 | `Promise` |
+| `msgbox.confirm(message, title, options)` | 确认 | `Promise` |
+| `msgbox.prompt(message, title, options)` | 输入 | `Promise` |
 
 | 参数名 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
