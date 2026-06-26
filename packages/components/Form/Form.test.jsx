@@ -60,6 +60,7 @@ describe("FormItem.vue", () => {
     });
     const formItem = wrapper.findComponent(FormItem);
     await formItem.vm.validate("blur").catch(() => {});
+    await wrapper.vm.$nextTick();
     expect(wrapper.find(".er-form-item__error-msg").exists()).toBeTruthy();
   });
 });

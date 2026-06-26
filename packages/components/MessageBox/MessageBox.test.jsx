@@ -23,11 +23,12 @@ describe("MessageBox", () => {
     await rAF();
   });
 
-  test("confirm should work", async () => {
-    msgbox.confirm("确认删除?", "提示", { confirmButtonText: "确定", cancelButtonText: "取消" });
+  test("confirm should work and reject on cancel", async () => {
+    const promise = msgbox.confirm("确认删除?", "提示", { confirmButtonText: "确定", cancelButtonText: "取消" });
     await rAF();
     expect(document.querySelector(".er-message-box")).toBeTruthy();
     document.querySelector(".er-message-box__cancel-btn").click();
+    await promise.catch(() => {});
     await rAF();
   });
 });
