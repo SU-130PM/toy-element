@@ -1,13 +1,24 @@
 .er-popconfirm {
+  --er-popconfirm-font-size: var(--er-font-size-base);
+  --er-popconfirm-padding: 0;
+  --er-popconfirm-action-margin-top: 8px;
+}
+.er-popconfirm {
+  font-size: var(--er-popconfirm-font-size);
+  line-height: 1.5;
   .er-popconfirm__main {
     display: flex;
     align-items: center;
+    gap: 6px;
     i {
-      margin-right: 5px;
+      font-size: 16px;
     }
   }
   .er-popconfirm__action {
     text-align: right;
-    margin-top: 8px;
+    margin-top: var(--er-popconfirm-action-margin-top);
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
   }
 }
