@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
 import { addUnit } from "@su-130pm/utils";
-import { useLocale } from "@su-130pm/hooks";
 import ErButton from "../Button/Button.vue";
 import ErIcon from "../Icon/Icon.vue";
 import ErTooltip from "../Tooltip/Tooltip.vue";
@@ -15,8 +14,14 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  confirmButtonText: String,
-  cancelButtonText: String,
+  confirmButtonText: {
+    type: String,
+    default: "是",
+  },
+  cancelButtonText: {
+    type: String,
+    default: "否",
+  },
   confirmButtonType: {
     type: String,
     default: "primary",
@@ -45,8 +50,6 @@ const emits = defineEmits(["confirm", "cancel"]);
 
 const tooltipRef = ref();
 const style = computed(() => ({ width: addUnit(props.width) }));
-
-const { t } = useLocale();
 
 function hidePopper() {
   tooltipRef.value?.hide();
@@ -78,7 +81,7 @@ function cancel(e) {
             :type="cancelButtonType"
             @click="cancel"
           >
-            {{ cancelButtonText || t("popconfirm.cancelButtonText") }}
+            {{ cancelButtonText }}
           </ErButton>
           <ErButton
             size="small"
@@ -86,7 +89,7 @@ function cancel(e) {
             :type="confirmButtonType"
             @click="confirm"
           >
-            {{ confirmButtonText || t("popconfirm.confirmButtonText") }}
+            {{ confirmButtonText }}
           </ErButton>
         </div>
       </div>
