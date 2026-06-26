@@ -19,7 +19,7 @@ import {
   faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { ElementPlusContainer } from "@vitepress-demo-preview/component";
-import "@vitepress-demo-preview/component/style.css";
+import "@vitepress-demo-preview/component/dist/style.css";
 
 import ErAlert from "../../../components/Alert/Alert.vue";
 import ErButton from "../../../components/Button/Button.vue";
