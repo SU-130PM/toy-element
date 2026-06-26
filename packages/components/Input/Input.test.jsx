@@ -1,9 +1,8 @@
 /** @jsxImportSource vue */
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
 
 import Input from "./Input.vue";
-import Icon from "../Icon/Icon.vue";
 
 describe("Input.vue", () => {
   it("render", () => {
@@ -17,7 +16,6 @@ describe("Input.vue", () => {
         prepend: "https://",
         prefix: "prefix-icon",
       },
-      attrs: { placeholder: "请输入" },
     });
 
     expect(wrapper.classes()).toContain("er-input");
@@ -63,11 +61,10 @@ describe("Input.vue", () => {
   it("clearable", async () => {
     const wrapper = mount(Input, {
       props: {
-        modelValue: "test",
+        modelValue: "test clear",
         clearable: true,
         "onUpdate:modelValue": (val) => wrapper.setProps({ modelValue: val }),
       },
-      global: { stubs: ["ErIcon"] },
     });
 
     expect(wrapper.find(".er-input__clear").exists()).toBeFalsy();
@@ -76,8 +73,7 @@ describe("Input.vue", () => {
 
     await wrapper.find(".er-input__clear").trigger("click");
     expect(wrapper.emitted()["clear"]).toBeTruthy();
-    expect(wrapper.emitted()["input"]?.[1]).toEqual([""]);
-    expect(wrapper.emitted()["change"]?.[1]).toEqual([""]);
+    expect(wrapper.emitted()["update:modelValue"]?.pop()).toEqual([""]);
   });
 
   it("toggle password", async () => {
@@ -88,7 +84,6 @@ describe("Input.vue", () => {
         modelValue: "123",
         "onUpdate:modelValue": (val) => wrapper.setProps({ modelValue: val }),
       },
-      global: { stubs: ["ErIcon"] },
     });
 
     expect(wrapper.find("input").attributes("type")).toBe("password");

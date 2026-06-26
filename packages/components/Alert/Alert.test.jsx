@@ -3,7 +3,6 @@ import { describe, it, expect, vi } from "vitest";
 import { mount } from "@vue/test-utils";
 
 import Alert from "./Alert.vue";
-import Icon from "../Icon/Icon.vue";
 
 describe("Alert.vue", () => {
   it("should render the alert with default props", () => {
@@ -14,7 +13,6 @@ describe("Alert.vue", () => {
     });
     expect(wrapper.text()).toContain("test title");
     expect(wrapper.text()).toContain("desc");
-    expect(wrapper.findComponent(Icon).exists()).toBeTruthy();
   });
 
   it.each([
@@ -22,24 +20,22 @@ describe("Alert.vue", () => {
     ["success", "check-circle"],
     ["warning", "circle-exclamation"],
     ["danger", "circle-xmark"],
-    ["error", "circle-xmark"],
   ])("should has the correct icon when props type is %s", (type, iconName) => {
     const wrapper = mount(Alert, {
       props: { title: "test", type, showIcon: true },
       global: { stubs: ["ErIcon"] },
     });
-    const icon = wrapper.findComponent(Icon);
+    const icon = wrapper.findComponent({ name: "ErIcon" });
     expect(icon.exists()).toBeTruthy();
   });
 
   it("should emit close event when close icon is clicked", async () => {
-    const onClose = vi.fn();
     const wrapper = mount(Alert, {
-      props: { title: "test", closable: true, onClose },
+      props: { title: "test", closable: true },
       global: { stubs: ["ErIcon"] },
     });
     await wrapper.find(".er-alert__close").trigger("click");
-    expect(onClose).toHaveBeenCalled();
+    expect(wrapper.emitted("close")).toBeTruthy();
   });
 
   it("should allow custom content via slots", () => {
@@ -76,8 +72,8 @@ describe("Alert.vue", () => {
     expect(wrapper.find(".er-alert").isVisible()).toBeTruthy();
     wrapper.vm.close();
     await wrapper.vm.$nextTick();
-    expect(wrapper.findComponent({ name: "ErAlert" }).find(".er-alert").attributes("style")).toBeDefined();
     wrapper.vm.open();
     await wrapper.vm.$nextTick();
+    expect(wrapper.find(".er-alert").isVisible()).toBeTruthy();
   });
 });

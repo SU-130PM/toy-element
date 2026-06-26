@@ -42,7 +42,7 @@ describe("Switch.vue", () => {
     expect(wrapper.emitted()["change"]).toBeUndefined();
   });
 
-  it("should display active and inactive text", () => {
+  it("should display active and inactive text", async () => {
     const wrapper = mount(Switch, {
       props: {
         modelValue: true,
@@ -54,8 +54,9 @@ describe("Switch.vue", () => {
     });
     expect(wrapper.text()).toContain("开");
 
-    wrapper.setProps({ modelValue: false });
-    expect(wrapper.text()).toContain("关");
+    await wrapper.setProps({ modelValue: false });
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find(".er-switch__core-inner-text").text()).toContain("关");
   });
 
   it("should render with custom active and inactive values", async () => {
