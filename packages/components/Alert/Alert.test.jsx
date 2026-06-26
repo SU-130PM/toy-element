@@ -32,9 +32,8 @@ describe("Alert.vue", () => {
   it("should emit close event when close icon is clicked", async () => {
     const wrapper = mount(Alert, {
       props: { title: "test", closable: true },
-      global: { stubs: ["ErIcon"] },
     });
-    await wrapper.find(".er-alert__close").trigger("click");
+    await wrapper.find(".er-alert__close .er-icon").trigger("click");
     expect(wrapper.emitted("close")).toBeTruthy();
   });
 
