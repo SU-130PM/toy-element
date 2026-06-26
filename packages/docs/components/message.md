@@ -4,38 +4,23 @@
 
 ## 基础用法
 
-<div class="demo-block">
-  <p>不同类型的消息</p>
-  <div class="demo-line">
-    <er-button @click="showMsg('info')">Info</er-button>
-    <er-button @click="showMsg('success')" type="success">Success</er-button>
-    <er-button @click="showMsg('warning')" type="warning">Warning</er-button>
-    <er-button @click="showMsg('danger')" type="danger">Danger</er-button>
-  </div>
-</div>
-
-```vue
-<script setup>
-import message from "path/to/Message/methods.js";
-</script>
-
-<template>
-  <er-button @click="message({ message: 'Info 提示', type: 'info' })">
-    Info
-  </er-button>
-</template>
-```
-
-<script setup>
-import message from "../../../components/Message/methods.js";
-function showMsg(type) {
-  message({ message: `${type} 消息提示`, type });
-}
-</script>
+::: preview
+demo-preview=../demo/message/Basic.vue
+:::
 
 ## Message API
 
-调用 `message(options)` 或 `message.info(options)` 等，返回一个 handler，可用 `handler.close()` 手动关闭。
+直接引入 `message` 函数调用：
+
+```js
+import message from "@su-130pm/components/Message/methods.js";
+message({ message: "提示信息", type: "info" });
+message.info("快捷方式");
+message.success("成功");
+message.warning("警告");
+message.danger("危险");
+message.closeAll(); // 关闭所有
+```
 
 | 参数名 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

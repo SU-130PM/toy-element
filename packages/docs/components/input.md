@@ -4,54 +4,27 @@
 
 ## 基础用法
 
-<div class="demo-block">
-  <p>基础输入框</p>
-  <er-input v-model="inputVal" placeholder="请输入内容" />
-</div>
-
-```vue
-<er-input v-model="inputVal" placeholder="请输入内容" />
-```
-
-<script setup>
-import { ref } from "vue";
-const inputVal = ref("");
-const inputVal2 = ref("");
-const inputVal3 = ref("");
-const textareaVal = ref("");
-</script>
+::: preview
+demo-preview=../demo/input/Basic.vue
+:::
 
 ## 可清除
 
-<div class="demo-block">
-  <p>带清除按钮</p>
-  <er-input v-model="inputVal2" placeholder="输入后会出现清除按钮" clearable />
-</div>
-
-```vue
-<er-input v-model="inputVal" placeholder="输入后会出现清除按钮" clearable />
-```
+::: preview
+demo-preview=../demo/input/Clearable.vue
+:::
 
 ## 密码框
 
-<div class="demo-block">
-  <p>可切换显示的密码</p>
-  <er-input v-model="inputVal3" type="password" placeholder="密码" show-password />
-</div>
-
-```vue
-<er-input v-model="inputVal" type="password" placeholder="密码" show-password />
-```
+::: preview
+demo-preview=../demo/input/Password.vue
+:::
 
 ## 文本域
 
-<div class="demo-block">
-  <er-input v-model="textareaVal" type="textarea" placeholder="多行文本" />
-</div>
-
-```vue
-<er-input v-model="textareaVal" type="textarea" placeholder="多行文本" />
-```
+::: preview
+demo-preview=../demo/input/Textarea.vue
+:::
 
 ## Input API
 
@@ -64,4 +37,3 @@ const textareaVal = ref("");
 | `disabled` | 是否禁用 | `boolean` | `false` |
 | `clearable` | 是否可清除 | `boolean` | `false` |
 | `showPassword` | 是否可切换密码显示 | `boolean` | `false` |
-| `readonly` | 是否只读 | `boolean` | `false` |

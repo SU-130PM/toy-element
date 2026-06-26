@@ -4,88 +4,39 @@
 
 ## 基础用法
 
-<div class="demo-block">
-  <p>基础按钮</p>
-  <div class="demo-line">
-    <er-button>Default</er-button>
-    <er-button type="primary">Primary</er-button>
-    <er-button type="success">Success</er-button>
-    <er-button type="warning">Warning</er-button>
-    <er-button type="danger">Danger</er-button>
-    <er-button type="info">Info</er-button>
-  </div>
-</div>
-
-```vue
-<er-button>Default</er-button>
-<er-button type="primary">Primary</er-button>
-<er-button type="success">Success</er-button>
-<er-button type="warning">Warning</er-button>
-<er-button type="danger">Danger</er-button>
-<er-button type="info">Info</er-button>
-```
+::: preview
+demo-preview=../demo/button/Basic.vue
+:::
 
 ## 朴素按钮
 
-<div class="demo-block">
-  <p>Plain</p>
-  <div class="demo-line">
-    <er-button plain>Plain</er-button>
-    <er-button type="primary" plain>Primary</er-button>
-    <er-button type="success" plain>Success</er-button>
-    <er-button type="warning" plain>Warning</er-button>
-    <er-button type="danger" plain>Danger</er-button>
-    <er-button type="info" plain>Info</er-button>
-  </div>
-</div>
+::: preview
+demo-preview=../demo/button/Plain.vue
+:::
 
 ## 圆角 / 圆形
 
-<div class="demo-block">
-  <p>Round & Circle</p>
-  <div class="demo-line">
-    <er-button round>Round</er-button>
-    <er-button type="primary" round>Primary</er-button>
-    <er-button icon="search" circle />
-    <er-button type="success" icon="check" circle />
-    <er-button type="danger" icon="trash" circle />
-  </div>
-</div>
+::: preview
+demo-preview=../demo/button/Round.vue
+:::
 
 ## 尺寸
 
-<div class="demo-block">
-  <p>Size</p>
-  <div class="demo-line">
-    <er-button size="large">Large</er-button>
-    <er-button>Default</er-button>
-    <er-button size="small">Small</er-button>
-  </div>
-</div>
+::: preview
+demo-preview=../demo/button/Size.vue
+:::
 
 ## 禁用与加载
 
-<div class="demo-block">
-  <p>Disabled & Loading</p>
-  <div class="demo-line">
-    <er-button disabled>Disabled</er-button>
-    <er-button type="primary" loading>Loading</er-button>
-    <er-button type="success" loading loading-icon="spinner">Loading</er-button>
-  </div>
-</div>
+::: preview
+demo-preview=../demo/button/Disabled.vue
+:::
 
 ## 按钮组
 
-<div class="demo-block">
-  <p>Button Group</p>
-  <div class="demo-line">
-    <er-button-group type="primary">
-      <er-button>Left</er-button>
-      <er-button>Middle</er-button>
-      <er-button>Right</er-button>
-    </er-button-group>
-  </div>
-</div>
+::: preview
+demo-preview=../demo/button/Group.vue
+:::
 
 ## Button API
 
@@ -98,13 +49,9 @@
 | `round` | 是否圆角 | `boolean` | `false` |
 | `circle` | 是否圆形 | `boolean` | `false` |
 | `disabled` | 是否禁用 | `boolean` | `false` |
-| `autofocus` | 自动聚焦 | `boolean` | `false` |
-| `nativeType` | 原生 type | `"button" \| "submit" \| "reset"` | `"button"` |
-| `icon` | 图标名 | `string` | - |
 | `loading` | 是否加载中 | `boolean` | `false` |
-| `loadingIcon` | 加载图标 | `string` | `"spinner"` |
-| `useThrottle` | 是否节流点击 | `boolean` | `true` |
-| `throttleDuration` | 节流时间（ms） | `number` | `500` |
+| `icon` | 图标名 | `string` | - |
+| `nativeType` | 原生 type | `"button" \| "submit" \| "reset"` | `"button"` |
 
 ## Button Events
 

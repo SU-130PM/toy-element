@@ -4,37 +4,20 @@
 
 ## 基础用法
 
-<div class="demo-block">
-  <div class="demo-line">
-    <er-button @click="showNotify('info')">Info</er-button>
-    <er-button @click="showNotify('success')" type="success">Success</er-button>
-    <er-button @click="showNotify('warning')" type="warning">Warning</er-button>
-    <er-button @click="showNotify('danger')" type="danger">Danger</er-button>
-  </div>
-</div>
-
-```vue
-<script setup>
-import notification from "path/to/Notification/methods.js";
-</script>
-
-<template>
-  <er-button @click="notification({ title: '通知', message: '内容', type: 'success' })">
-    通知
-  </er-button>
-</template>
-```
-
-<script setup>
-import notification from "../../../components/Notification/methods.js";
-function showNotify(type) {
-  notification({ title: `${type} 通知`, message: `这是一条 ${type} 类型的通知`, type });
-}
-</script>
+::: preview
+demo-preview=../demo/notification/Basic.vue
+:::
 
 ## Notification API
 
-调用 `notification(options)` 或 `notification.success(options)` 等。
+直接引入 `notification` 函数调用：
+
+```js
+import notification from "@su-130pm/components/Notification/methods.js";
+notification({ title: "标题", message: "内容", type: "success" });
+notification.success("快捷方式");
+notification.closeAll();
+```
 
 | 参数名 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |

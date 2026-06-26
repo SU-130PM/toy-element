@@ -18,6 +18,9 @@ import {
   faXmark,
   faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
+import { ElementPlusContainer } from "@vitepress-demo-preview/component";
+import "@vitepress-demo-preview/component/style.css";
+
 import ErAlert from "../../../components/Alert/Alert.vue";
 import ErButton from "../../../components/Button/Button.vue";
 import ErButtonGroup from "../../../components/Button/ButtonGroup.vue";
@@ -32,9 +35,6 @@ import ErIcon from "../../../components/Icon/Icon.vue";
 import ErInput from "../../../components/Input/Input.vue";
 import ErLoading from "../../../components/Loading/Loading.vue";
 import { vLoading } from "../../../components/Loading/directive.js";
-import ErMessage from "../../../components/Message/Message.vue";
-import ErMessageBox from "../../../components/MessageBox/MessageBox.vue";
-import ErNotification from "../../../components/Notification/Notification.vue";
 import ErPopconfirm from "../../../components/Popconfirm/Popconfirm.vue";
 import ErSelect from "../../../components/Select/Select.vue";
 import ErOption from "../../../components/Select/Option.vue";
@@ -55,6 +55,7 @@ const theme = {
   ...DefaultTheme,
   enhanceApp(ctx) {
     DefaultTheme.enhanceApp?.(ctx);
+    ctx.app.component("demo-preview", ElementPlusContainer);
     ctx.app.component("ErAlert", ErAlert);
     ctx.app.component("ErButton", ErButton);
     ctx.app.component("ErButtonGroup", ErButtonGroup);
@@ -75,12 +76,6 @@ const theme = {
     ctx.app.component("ErSwitch", ErSwitch);
     ctx.app.component("ErTooltip", ErTooltip);
     ctx.app.component("ErUpload", ErUpload);
-    ctx.app.config.globalProperties.$message = ErMessage;
-    ctx.app.config.globalProperties.$notify = ErNotification;
-    ctx.app.config.globalProperties.$msgbox = ErMessageBox;
-    ctx.app.config.globalProperties.$alert = ErMessageBox.alert;
-    ctx.app.config.globalProperties.$confirm = ErMessageBox.confirm;
-    ctx.app.config.globalProperties.$prompt = ErMessageBox.prompt;
   },
 };
 

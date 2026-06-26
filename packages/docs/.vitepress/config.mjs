@@ -1,4 +1,5 @@
 import { defineConfig } from "vitepress";
+import { containerPreview, componentPreview } from "@vitepress-demo-preview/plugin";
 
 export default defineConfig({
   title: "Toy Element",
@@ -6,50 +7,49 @@ export default defineConfig({
   base: "/toy-element/",
   themeConfig: {
     nav: [
-      { text: "Guide", link: "/" },
-      { text: "Components", link: "/components/button" },
+      { text: "开始使用", link: "/" },
+      { text: "组件", link: "/components/button" },
       { text: "GitHub", link: "https://github.com/SU-130PM/toy-element" },
     ],
     sidebar: [
       {
-        text: "Basic",
+        text: "基础组件",
+        collapsed: false,
         items: [
-          { text: "Button", link: "/components/button" },
-          { text: "Icon", link: "/components/icon" },
-          { text: "Switch", link: "/components/switch" },
-          { text: "Alert", link: "/components/alert" },
+          { text: "Button 按钮", link: "/components/button" },
+          { text: "Icon 图标", link: "/components/icon" },
+          { text: "Switch 开关", link: "/components/switch" },
+          { text: "Collapse 折叠面板", link: "/components/collapse" },
         ],
       },
       {
-        text: "Form",
+        text: "反馈组件",
+        collapsed: false,
         items: [
-          { text: "Input", link: "/components/input" },
-          { text: "Select", link: "/components/select" },
-          { text: "Form", link: "/components/form" },
+          { text: "Alert 警告", link: "/components/alert" },
+          { text: "Message 消息提示", link: "/components/message" },
+          { text: "Notification 通知", link: "/components/notification" },
+          { text: "MessageBox 弹框", link: "/components/messagebox" },
+          { text: "Loading 加载", link: "/components/loading" },
+          { text: "Popconfirm 气泡确认框", link: "/components/popconfirm" },
+          { text: "Tooltip 文字提示", link: "/components/tooltip" },
         ],
       },
       {
-        text: "Navigation",
+        text: "表单组件",
+        collapsed: false,
         items: [
-          { text: "Dropdown", link: "/components/dropdown" },
-          { text: "Tooltip", link: "/components/tooltip" },
-          { text: "Popconfirm", link: "/components/popconfirm" },
+          { text: "Input 输入框", link: "/components/input" },
+          { text: "Select 选择器", link: "/components/select" },
+          { text: "Form 表单", link: "/components/form" },
+          { text: "Dropdown 下拉菜单", link: "/components/dropdown" },
         ],
       },
       {
-        text: "Feedback",
+        text: "数据组件",
+        collapsed: false,
         items: [
-          { text: "Collapse", link: "/components/collapse" },
-          { text: "Message", link: "/components/message" },
-          { text: "Notification", link: "/components/notification" },
-          { text: "MessageBox", link: "/components/messagebox" },
-          { text: "Loading", link: "/components/loading" },
-        ],
-      },
-      {
-        text: "Data",
-        items: [
-          { text: "Upload", link: "/components/upload" },
+          { text: "Upload 上传", link: "/components/upload" },
         ],
       },
     ],
@@ -58,6 +58,12 @@ export default defineConfig({
     ],
     search: {
       provider: "local",
+    },
+  },
+  markdown: {
+    config(md) {
+      md.use(containerPreview);
+      md.use(componentPreview);
     },
   },
 });

@@ -4,34 +4,9 @@
 
 ## 基础用法
 
-<div class="demo-block">
-  <er-upload
-    action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-    @on-change="handleChange"
-    @on-success="handleSuccess"
-  >
-    <er-button type="primary">点击上传</er-button>
-  </er-upload>
-</div>
-
-```vue
-<er-upload
-  action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-  @on-change="handleChange"
-  @on-success="handleSuccess"
->
-  <er-button type="primary">点击上传</er-button>
-</er-upload>
-```
-
-<script setup>
-function handleChange(file) {
-  console.log("change:", file);
-}
-function handleSuccess(data, file) {
-  console.log("success:", data, file);
-}
-</script>
+::: preview
+demo-preview=../demo/upload/Basic.vue
+:::
 
 ## Upload API
 

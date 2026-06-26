@@ -4,37 +4,9 @@
 
 ## 基础用法
 
-<div class="demo-block">
-  <p>Hover 触发</p>
-  <er-dropdown
-    :items="[
-      { label: '黄金糕', command: 'a' },
-      { label: '双皮奶', command: 'b' },
-      { label: '蚵仔煎', command: 'c', divided: true },
-    ]"
-    @command="handleCommand"
-  >
-    <er-button type="primary">下拉菜单</er-button>
-  </er-dropdown>
-</div>
-
-```vue
-<er-dropdown
-  :items="[
-    { label: '黄金糕', command: 'a' },
-    { label: '双皮奶', command: 'b' },
-  ]"
-  @command="handleCommand"
->
-  <er-button>下拉菜单</er-button>
-</er-dropdown>
-```
-
-<script setup>
-function handleCommand(cmd) {
-  alert(`点击了: ${cmd}`);
-}
-</script>
+::: preview
+demo-preview=../demo/dropdown/Basic.vue
+:::
 
 ## Dropdown API
 
@@ -44,7 +16,6 @@ function handleCommand(cmd) {
 | `hideOnClick` | 点击后是否隐藏 | `boolean` | `true` |
 | `splitButton` | 是否分割按钮 | `boolean` | `false` |
 | `type` | 按钮类型 | `string` | - |
-| `size` | 按钮尺寸 | `string` | - |
 
 ## DropdownItem API
 

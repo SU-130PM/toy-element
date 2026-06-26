@@ -4,31 +4,9 @@
 
 ## 基础用法
 
-<div class="demo-block">
-  <er-popconfirm title="确定删除这条记录吗？" @confirm="handleConfirm" @cancel="handleCancel">
-    <er-button type="danger">删除</er-button>
-  </er-popconfirm>
-</div>
-
-```vue
-<er-popconfirm
-  title="确定删除这条记录吗？"
-  @confirm="handleConfirm"
-  @cancel="handleCancel"
->
-  <er-button type="danger">删除</er-button>
-</er-popconfirm>
-```
-
-<script setup>
-import message from "../../../components/Message/methods.js";
-function handleConfirm() {
-  message({ message: "已确认删除", type: "success" });
-}
-function handleCancel() {
-  message({ message: "已取消", type: "info" });
-}
-</script>
+::: preview
+demo-preview=../demo/popconfirm/Basic.vue
+:::
 
 ## Popconfirm API
 
@@ -38,7 +16,6 @@ function handleCancel() {
 | `confirmButtonText` | 确认按钮文字 | `string` | - |
 | `cancelButtonText` | 取消按钮文字 | `string` | - |
 | `confirmButtonType` | 确认按钮类型 | `string` | `"primary"` |
-| `cancelButtonType` | 取消按钮类型 | `string` | - |
 | `icon` | 图标 | `string` | `"question-circle"` |
 | `iconColor` | 图标颜色 | `string` | `"#f90"` |
 | `hideIcon` | 是否隐藏图标 | `boolean` | `false` |

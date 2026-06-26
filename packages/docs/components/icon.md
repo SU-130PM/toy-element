@@ -4,55 +4,28 @@
 
 ## 基础用法
 
-<div class="demo-block">
-  <p>图标展示</p>
-  <div class="demo-line">
-    <er-icon icon="spinner" spin />
-    <er-icon icon="search" />
-    <er-icon icon="check" />
-    <er-icon icon="trash" />
-    <er-icon icon="angle-down" />
-    <er-icon icon="angle-right" />
-  </div>
-</div>
-
-```vue
-<er-icon icon="spinner" spin />
-<er-icon icon="search" />
-<er-icon icon="check" />
-```
+::: preview
+demo-preview=../demo/icon/Basic.vue
+:::
 
 ## 类型颜色
 
-<div class="demo-block">
-  <p>Type 属性</p>
-  <div class="demo-line">
-    <er-icon icon="circle-info" type="info" />
-    <er-icon icon="check-circle" type="success" />
-    <er-icon icon="circle-exclamation" type="warning" />
-    <er-icon icon="circle-xmark" type="danger" />
-  </div>
-</div>
-
-```vue
-<er-icon icon="circle-info" type="info" />
-<er-icon icon="check-circle" type="success" />
-<er-icon icon="circle-exclamation" type="warning" />
-<er-icon icon="circle-xmark" type="danger" />
-```
+::: preview
+demo-preview=../demo/icon/Type.vue
+:::
 
 ## 自定义颜色
 
-<div class="demo-block">
-  <p>Color 属性</p>
-  <div class="demo-line">
-    <er-icon icon="search" color="#409eff" />
-    <er-icon icon="check" color="#67c23a" />
-    <er-icon icon="star" color="#e6a23c" />
-  </div>
-</div>
+::: preview
+demo-preview=../demo/icon/Color.vue
+:::
 
-```vue
-<er-icon icon="search" color="#409eff" />
-<er-icon icon="check" color="#67c23a" />
-```
+## Icon API
+
+| 属性名 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| `icon` | 图标名称 | `string \| string[] \| object` | - |
+| `size` | 图标尺寸 | `string` | - |
+| `type` | 类型（设置颜色） | `"info" \| "success" \| "warning" \| "danger"` | - |
+| `color` | 自定义颜色 | `string` | - |
+| `spin` | 是否旋转 | `boolean` | `false` |
