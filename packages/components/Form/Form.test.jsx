@@ -23,6 +23,17 @@ describe("Form.vue", () => {
     });
     expect(wrapper.find(".er-form").exists()).toBeTruthy();
   });
+
+  it("should expose validate method", () => {
+    const model = reactive({ name: "test" });
+    const wrapper = mount(Form, {
+      props: { model },
+    });
+    expect(wrapper.vm.validate).toBeDefined();
+    expect(wrapper.vm.validateField).toBeDefined();
+    expect(wrapper.vm.resetFields).toBeDefined();
+    expect(wrapper.vm.clearValidate).toBeDefined();
+  });
 });
 
 describe("FormItem.vue", () => {
@@ -42,25 +53,36 @@ describe("FormItem.vue", () => {
     expect(wrapper.text()).toContain("姓名");
   });
 
-  it("should display error message on validation failure", async () => {
+  it("should display error message when error prop is set", async () => {
     const model = reactive({ name: "" });
-    const rules = {
-      name: [{ required: true, message: "请填写姓名", trigger: "blur" }],
-    };
     const wrapper = mount({
       setup() {
         return () => (
-          <Form model={model} rules={rules}>
-            <FormItem label="姓名" prop="name" rules={rules.name}>
+          <Form model={model}>
+            <FormItem label="姓名" prop="name" error="请填写姓名">
               <input />
             </FormItem>
           </Form>
         );
       },
     });
-    const formItem = wrapper.findComponent(FormItem);
-    await formItem.vm.validate("blur").catch(() => {});
-    await wrapper.vm.$nextTick();
     expect(wrapper.find(".er-form-item__error-msg").exists()).toBeTruthy();
+    expect(wrapper.find(".er-form-item__error-msg").text()).toContain("请填写姓名");
+  });
+
+  it("should show required asterisk", () => {
+    const model = reactive({ name: "" });
+    const wrapper = mount({
+      setup() {
+        return () => (
+          <Form model={model}>
+            <FormItem label="姓名" prop="name" required>
+              <input />
+            </FormItem>
+          </Form>
+        );
+      },
+    });
+    expect(wrapper.find(".er-form-item").classes()).toContain("is-required");
   });
 });
