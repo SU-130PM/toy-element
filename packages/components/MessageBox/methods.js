@@ -5,14 +5,13 @@ import MessageBoxConstructor from "./MessageBox.vue";
 const messageInstanceMap = new Map();
 
 function initInstance(props, container) {
-  const visible = ref(false);
   const isVNodeMsg = isFunction(props?.message) || isVNode(props?.message);
   const genDefaultSlot = (message) =>
     isFunction(message) ? message : () => message;
 
   const vnode = createVNode(
     MessageBoxConstructor,
-    { ...props, visible },
+    { ...props },
     isVNodeMsg ? { default: genDefaultSlot(props.message) } : void 0
   );
   render(vnode, container);
@@ -26,16 +25,19 @@ function genContainer() {
 
 function showMessage(options) {
   const container = genContainer();
+  const visibleRef = ref(false);
+
   const props = {
     ...options,
+    visible: visibleRef,
     doClose: () => {
-      vm.visible.value = false;
+      visibleRef.value = false;
     },
     doAction: (action, inputVal) => {
       const currentMsg = messageInstanceMap.get(vm);
       let resolve;
 
-      nextTick(() => vm.doClose());
+      nextTick(() => visibleRef.value = false);
       if (options.showInput) {
         resolve = { value: inputVal, action };
       } else {
@@ -60,7 +62,7 @@ function showMessage(options) {
   const instance = initInstance(props, container);
   const vm = instance?.proxy;
 
-  vm.visible.value = true;
+  visibleRef.value = true;
   return vm;
 }
 
