@@ -9,9 +9,18 @@ const packagesDir = path.join(rootDir, "packages");
 const rootReadme = path.join(rootDir, "README.md");
 
 const packageBuildMap = {
-  utils: ["index.js", "install.js"],
+  utils: ["index.js", "install.js", "error.js", "style.js", "render.js"],
   theme: ["index.js", "index.css", "reset.css"],
-  components: ["index.js", "Button", "Collapse", "Icon"],
+  hooks: ["index.js", "package.json", "useEventListener.js", "useClickOutside.js", "useZIndex.js", "useId.js", "useOffset.js", "useProp.js", "useDisabledStyle.js", "useFocusController.js", "useLocale.js"],
+  constants: ["index.js", "package.json"],
+  components: [
+    "index.js",
+    "Alert", "Button", "Collapse", "ConfigProvider",
+    "Dropdown", "Form", "Icon", "Input",
+    "Loading", "Message", "MessageBox", "Notification",
+    "Overlay", "Popconfirm", "Select", "Switch",
+    "Tooltip", "Upload",
+  ],
   core: ["index.js", "component.js"],
 };
 
