@@ -11,10 +11,11 @@ const instanceMap = new Map();
 const { nextZIndex } = useZIndex(30000);
 
 function createLoadingComponent(options) {
-  const visible = ref(false);
+  const visible = ref(!!options.visible);
   const afterLeaveFlag = ref(false);
+  let destroyed = false;
   const handleAfterLeave = () => {
-    if (!afterLeaveFlag.value) return;
+    if (!afterLeaveFlag.value || destroyed) return;
     destroy();
   };
 
@@ -26,6 +27,8 @@ function createLoadingComponent(options) {
   const setText = (text) => (data.text = text);
 
   const destroy = () => {
+    if (destroyed) return;
+    destroyed = true;
     const target = data.parent;
     subtLoadingNumb(target);
     if (getLoadingNumb(target)) return;
@@ -145,10 +148,13 @@ export function Loading(options = {}) {
     return fullscreenInstance;
   }
 
-  addLoadingNumb(resolved?.parent);
   if (instanceMap.has(target)) {
-    return instanceMap.get(target);
+    const existingInstance = instanceMap.get(target);
+    nextTick(() => (existingInstance.visible.value = true));
+    return existingInstance;
   }
+
+  addLoadingNumb(resolved?.parent);
 
   const instance = createLoadingComponent({
     ...resolved,
@@ -162,8 +168,6 @@ export function Loading(options = {}) {
 
   addClass(options, resolved?.parent);
   resolved.parent?.appendChild(instance.$el);
-
-  nextTick(() => (instance.visible.value = !!resolved.visible));
 
   if (resolved.fullscreen) {
     fullscreenInstance = instance;
