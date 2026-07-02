@@ -1,6 +1,6 @@
 {
   "name": "@su-130pm/utils",
-  "version": "0.3.0",
+  "description": "Toy Element 组件库内部工具包 (withInstall, debugWarn, RenderVnode 等)",
   "private": false,
   "publishConfig": {
     "access": "public"
