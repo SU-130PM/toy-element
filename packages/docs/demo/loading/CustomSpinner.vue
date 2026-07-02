@@ -4,7 +4,12 @@
       <er-button @click="open">显示 Loading</er-button>
       <er-button @click="close">关闭</er-button>
     </div>
-    <div v-loading="loading" class="loading-demo-box">
+    <div
+      v-loading="loading"
+      er-loading-spinner="circle"
+      er-loading-text="自定义图标"
+      class="loading-demo-box"
+    >
       加载区域
     </div>
   </div>
