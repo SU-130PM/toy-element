@@ -1,5 +1,6 @@
 {
   "name": "@su-130pm/theme",
+  "version": "0.2.1",
   "description": "Toy Element 组件库主题样式与 CSS 变量",
   "private": false,
   "publishConfig": {

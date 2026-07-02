@@ -1,5 +1,6 @@
 {
   "name": "@su-130pm/core",
+  "version": "0.3.0",
   "description": "Toy Element 组件库入口包，全量安装所有组件",
   "private": false,
   "publishConfig": {

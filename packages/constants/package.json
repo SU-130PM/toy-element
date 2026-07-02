@@ -1,5 +1,6 @@
 {
   "name": "@su-130pm/constants",
+  "version": "0.1.0",
   "description": "Toy Element 组件库共享常量",
   "private": false,
   "publishConfig": {

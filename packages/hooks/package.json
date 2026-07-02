@@ -1,5 +1,6 @@
 {
   "name": "@su-130pm/hooks",
+  "version": "0.1.0",
   "description": "Toy Element 组件库组合式 API 集合 (useEventListener, useZIndex 等)",
   "private": false,
   "publishConfig": {
