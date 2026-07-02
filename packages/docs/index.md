@@ -1,23 +1,29 @@
-﻿---
+---
 layout: home
 
 hero:
   name: "Toy Element"
-  text: "高仿 ElementPlus"
-  tagline: 正在逐步搭建一个可发布、可测试、可维护的组件库。
+  text: "高仿 Element Plus"
+  tagline: 基于 Vue 3 的组件库，22+ 个组件，支持全量安装与按需引入。
   actions:
     - theme: brand
       text: 开始使用
-      link: /components/collapse
+      link: /components/button
     - theme: alt
       text: GitHub
       link: https://github.com/SU-130PM/toy-element
 
 features:
-  - title: JavaScript First
-    details: 当前仓库以 JavaScript 版本为主，组件实现、测试和文档示例保持一致，便于直接上手。
-  - title: Testable Components
-    details: 每个核心组件都配有 Vitest 用例，开发时能快速验证交互和边界行为。
-  - title: Release Ready
-    details: 使用 pnpm workspace 管理多包，支持 components、core、theme、utils 的协同发布。
+  - title: 22+ 组件
+    details: 覆盖基础、表单、导航、反馈、数据展示五大分类，API 对齐 Element Plus。
+  - title: JavaScript 优先
+    details: 全部使用 JavaScript 编写，无 TypeScript 编译步骤，源码即文档，上手门槛低。
+  - title: 交互式文档
+    details: 每个组件配有可运行的 demo 和源码展示，所见即所得。
+  - title: 可测试
+    details: 核心组件配有 Vitest + jsdom 测试用例，覆盖渲染、交互、边界状态。
+  - title: 按需引入 / 全量安装
+    details: 支持 app.use(Component) 按需注册，也支持 app.use(ToyElement) 全量安装。
+  - title: Monorepo 管理
+    details: 使用 pnpm workspace 管理 6 个子包，支持 components、core、hooks、theme、utils、constants 的协同发布。
 ---

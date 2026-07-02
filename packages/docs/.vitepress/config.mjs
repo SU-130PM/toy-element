@@ -7,7 +7,7 @@ export default defineConfig({
   base: "/toy-element/",
   themeConfig: {
     nav: [
-      { text: "开始使用", link: "/" },
+      { text: "指南", link: "/get-started" },
       { text: "组件", link: "/components/button" },
       { text: "GitHub", link: "https://github.com/SU-130PM/toy-element" },
     ],

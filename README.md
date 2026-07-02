@@ -2,13 +2,16 @@
 
 Toy Element 是一个基于 Vue 3 的组件库 Monorepo，使用 `pnpm workspace` 管理多个子包。
 
-当前仓库已经包含以下组件：
+当前仓库已经包含 **22+ 个组件**：
 
-- `ErButton`
-- `ErButtonGroup`
-- `ErIcon`
-- `ErCollapse`
-- `ErCollapseItem`
+| 分类 | 组件 |
+|------|------|
+| 基础 | ErButton, ErButtonGroup, ErIcon, ErSwitch, ErAlert, ErCollapse, ErCollapseItem |
+| 表单 | ErInput, ErSelect, ErOption, ErForm, ErFormItem |
+| 导航 | ErDropdown, ErDropdownItem, ErTooltip, ErPopconfirm |
+| 反馈 | ErMessage, ErNotification, ErMessageBox, ErLoading |
+| 数据 | ErUpload |
+| 其他 | ErConfigProvider, ErOverlay |
 
 在线地址：
 
@@ -17,24 +20,24 @@ Toy Element 是一个基于 Vue 3 的组件库 Monorepo，使用 `pnpm workspace
 
 ## 已发布包
 
-当前仓库包含 4 个可发布 npm 包：
-
-- `@su-130pm/core`：推荐使用的入口，适合业务项目直接全量安装
-- `@su-130pm/components`：组件导出包，适合按需引入
-- `@su-130pm/theme`：主题样式与全局变量
-- `@su-130pm/utils`：组件库内部工具包
+| 包名 | 版本 | 说明 |
+|------|------|------|
+| `@su-130pm/core` | [![npm](https://img.shields.io/npm/v/@su-130pm/core)](https://www.npmjs.com/package/@su-130pm/core) | 推荐入口，全量安装 |
+| `@su-130pm/components` | [![npm](https://img.shields.io/npm/v/@su-130pm/components)](https://www.npmjs.com/package/@su-130pm/components) | 组件导出包，支持按需引入 |
+| `@su-130pm/hooks` | [![npm](https://img.shields.io/npm/v/@su-130pm/hooks)](https://www.npmjs.com/package/@su-130pm/hooks) | 组合式 API 工具集 |
+| `@su-130pm/theme` | [![npm](https://img.shields.io/npm/v/@su-130pm/theme)](https://www.npmjs.com/package/@su-130pm/theme) | 主题样式与 CSS 变量 |
+| `@su-130pm/utils` | [![npm](https://img.shields.io/npm/v/@su-130pm/utils)](https://www.npmjs.com/package/@su-130pm/utils) | 内部工具包 |
+| `@su-130pm/constants` | [![npm](https://img.shields.io/npm/v/@su-130pm/constants)](https://www.npmjs.com/package/@su-130pm/constants) | 共享常量 |
 
 ## 快速开始
 
 ### 推荐方式：全量安装
 
-安装：
-
 ```bash
 pnpm add @su-130pm/core
 ```
 
-在入口文件注册组件库：
+在入口文件注册：
 
 ```js
 import { createApp } from "vue";
@@ -48,214 +51,161 @@ createApp(App).use(ToyElement).mount("#app");
 
 ```vue
 <template>
+  <!-- 按钮 -->
   <er-button type="primary">主要按钮</er-button>
+  <er-button type="success" :icon="check" circle />
 
-  <er-button-group type="success">
-    <er-button>左侧</er-button>
-    <er-button>右侧</er-button>
-  </er-button-group>
+  <!-- 表单 -->
+  <er-form :model="formData" :rules="rules">
+    <er-form-item label="用户名" prop="name">
+      <er-input v-model="formData.name" />
+    </er-form-item>
+    <er-form-item label="邮箱" prop="email">
+      <er-input v-model="formData.email" />
+    </er-form-item>
+  </er-form>
 
-  <er-collapse>
-    <er-collapse-item name="a" title="折叠面板 A">
-      内容 A
-    </er-collapse-item>
+  <!-- 反馈 -->
+  <er-alert title="提示" type="success" show-icon />
+  <er-button @click="$message({ message: '成功', type: 'success' })">
+    消息提示
+  </er-button>
+
+  <!-- 折叠面板 -->
+  <er-collapse :model-value="['a']">
+    <er-collapse-item name="a" title="面板 A">内容 A</er-collapse-item>
   </er-collapse>
+
+  <!-- loading -->
+  <div v-loading="loading">加载区域</div>
 </template>
 ```
 
 ### 按需引入
 
-如果你只想注册部分组件，可以安装：
-
 ```bash
 pnpm add @su-130pm/components @su-130pm/theme
 ```
 
-然后按需注册：
-
 ```js
 import { createApp } from "vue";
-import App from "./App.vue";
-import { ErButton, ErButtonGroup } from "@su-130pm/components";
+import { ErButton, ErInput, ErForm } from "@su-130pm/components";
 import "@su-130pm/theme/index.css";
 
 const app = createApp(App);
-
 app.use(ErButton);
-app.use(ErButtonGroup);
+app.use(ErInput);
+app.use(ErForm);
 app.mount("#app");
 ```
 
-如果你在按需模式下使用字符串图标、`loading` 按钮或折叠面板箭头，还需要手动注册默认图标：
+命令式 API（Message / Notification / MessageBox）无需注册，直接引入调用即可：
 
 ```js
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAngleRight, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { ErMessage, ErNotification, ErMessageBox } from "@su-130pm/components";
 
-library.add(faSpinner, faAngleRight);
+ErMessage({ message: "提示", type: "success" });
+ErNotification({ title: "通知", message: "内容" });
+ErMessageBox.alert("消息内容", "标题");
 ```
 
 ## 各包说明
 
 ### `@su-130pm/core`
 
-推荐业务项目优先使用这个包。
+推荐业务项目优先使用。会自动完成：
 
-它会自动完成：
-
-- `app.use()` 全量注册组件
+- `app.use()` 全量注册 22+ 个组件
 - 自动引入主题样式
-- 自动注册默认图标
+- 自动注册 FontAwesome 图标库
+- 注册 `v-loading` 指令
 
 ### `@su-130pm/components`
 
-适合按需引入场景。
+适合按需引入。每个组件可单独 `app.use()`，命令式 API 直接 import 使用。
 
-特点：
+### `@su-130pm/hooks`
 
-- 可以只引入需要的组件
-- 需要手动引入主题样式
-- 涉及默认图标时需要手动注册 Font Awesome 图标
+组件库内部使用的组合式 API 集合，包括：
+
+- `useEventListener`、`useClickOutside`、`useFocusController`
+- `useZIndex`、`useId`、`useOffset`
+- `useProp`、`useDisabledStyle`、`useLocale`
 
 ### `@su-130pm/theme`
 
-提供全局样式基础，包括：
-
-- reset 样式
-- CSS 变量
-- 组件公共视觉基础
+CSS 变量定义 + reset 样式，所有组件样式基于 CSS 变量实现主题定制。
 
 ### `@su-130pm/utils`
 
-这是组件库内部工具包，主要包含：
+内部工具包：`withInstall`、`makeInstaller`、`debugWarn`、`addUnit`、`RenderVnode`。
 
-- `withInstall`
-- `makeInstaller`
+### `@su-130pm/constants`
 
-普通业务项目通常不需要直接安装它。
+共享常量，如 `INSTALLED_KEY`。
 
 ## 本地开发
 
-安装依赖：
-
 ```bash
+# 安装依赖
 corepack pnpm install
-```
 
-启动本地演示项目：
-
-```bash
-corepack pnpm run dev
-```
-
-启动文档站：
-
-```bash
+# 启动文档站
 corepack pnpm run docs:dev
-```
 
-运行组件测试：
-
-```bash
+# 运行测试
 corepack pnpm run test
-```
 
-构建本地演示项目：
-
-```bash
-corepack pnpm run build:play
-```
-
-构建文档站：
-
-```bash
-corepack pnpm run docs:build
-```
-
-生成 npm 发布产物：
-
-```bash
+# 构建 npm 发布产物
 corepack pnpm run build:packages
 ```
 
 ## 仓库结构
 
-```text
+```
 packages/
-  components/   组件源码、样式、测试
+  components/   22+ 个组件源码、样式、测试
   core/         全量安装入口
-  docs/         VitePress 文档站
-  play/         本地演示项目
-  theme/        主题样式与变量
+  docs/         VitePress 文档站（含交互式 demo）
+  hooks/        组合式 API
+  constants/    共享常量
+  theme/        CSS 变量与 reset 样式
   utils/        安装工具与公共方法
+  play/         本地演示项目
 scripts/
   build-packages.mjs
 .github/workflows/
-  test-and-deploy.yaml
-  publish-npm.yaml
+  test-and-deploy.yaml     # push master → test → build docs → deploy Pages
+  publish-npm.yaml         # tag v* → publish to npm
 ```
 
 ## 发布流程
 
-### 发布前检查
-
-正式发布前建议先执行：
-
-```bash
-corepack pnpm run release
-```
-
-这条命令会做两件事：
-
-- 运行组件测试
-- 生成四个包的 `dist/` 发布目录
-
-### 本地发布
-
-本地手动发布时，建议按依赖顺序执行：
-
-```bash
-corepack pnpm publish ./packages/utils/dist --access public --no-git-checks
-corepack pnpm publish ./packages/theme/dist --access public --no-git-checks
-corepack pnpm publish ./packages/components/dist --access public --no-git-checks
-corepack pnpm publish ./packages/core/dist --access public --no-git-checks
-```
-
-如果你的 npm 账号开启了发布 2FA，需要额外带上：
-
-```bash
---otp=你的6位验证码
-```
-
 ### GitHub Actions 自动发布
 
-仓库已经包含自动发布工作流：
+推 tag 即可触发：
 
-- `.github/workflows/publish-npm.yaml`
+```bash
+git tag v0.3.0
+git push origin v0.3.0
+```
 
-使用前需要先配置：
+需要先在 GitHub Secrets 中配置 `NPM_TOKEN`。
 
-1. 打开 `GitHub -> Settings -> Secrets and variables -> Actions`
-2. 新增仓库密钥：`NPM_TOKEN`
-3. 确保该 token 对 `@su-130pm` scope 具有发布权限
+### 本地手动发布
 
-触发方式有两种：
+```bash
+# 构建所有包
+node scripts/build-packages.mjs
 
-1. 在 GitHub Actions 页面手动运行 `Publish npm packages`
-2. 推送符合 `v*` 规则的 tag
-
-## 版本说明
-
-npm 不允许覆盖已发布的版本。
-
-所以每次发布前，都要先修改以下文件中的版本号：
-
-- `packages/utils/package.json`
-- `packages/theme/package.json`
-- `packages/components/package.json`
-- `packages/core/package.json`
-
-建议同一轮发布统一升级版本，避免内部依赖版本不一致。
+# 按依赖顺序发布
+npm publish ./packages/constants/dist --access public
+npm publish ./packages/hooks/dist --access public
+npm publish ./packages/utils/dist --access public
+npm publish ./packages/theme/dist --access public
+npm publish ./packages/components/dist --access public
+npm publish ./packages/core/dist --access public
+```
 
 ## License
 
