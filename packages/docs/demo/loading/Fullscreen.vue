@@ -5,7 +5,7 @@
   </div>
 </template>
 <script setup>
-import { Loading } from "@su-130pm/components";
+import { Loading } from "../../../components/Loading/service.js";
 function open() {
   const loading = Loading({
     text: "全屏加载中...",

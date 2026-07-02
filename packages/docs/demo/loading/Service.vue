@@ -7,7 +7,7 @@
   </div>
 </template>
 <script setup>
-import { Loading } from "@su-130pm/components";
+import { Loading } from "../../../components/Loading/service.js";
 function open() {
   const loading = Loading({
     text: "服务方式加载中...",
