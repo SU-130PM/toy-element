@@ -61,9 +61,9 @@ demo-preview=../demo/loading/Fullscreen.vue
 :::
 
 ```js
-import { Loading } from "@su-130pm/components";
+import { ErLoadingService } from "@su-130pm/components";
 
-const loading = Loading({
+const loading = ErLoadingService({
   text: "全屏加载中...",
   fullscreen: true,
 });
@@ -95,9 +95,9 @@ demo-preview=../demo/loading/Service.vue
 :::
 
 ```js
-import { Loading } from "@su-130pm/components";
+import { ErLoadingService } from "@su-130pm/components";
 
-const loading = Loading({
+const loading = ErLoadingService({
   text: "服务方式加载中...",
   background: "rgba(0, 0, 0, 0.7)",
 });

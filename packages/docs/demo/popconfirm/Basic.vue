@@ -4,11 +4,11 @@
   </er-popconfirm>
 </template>
 <script setup>
-import message from "../../../components/Message/methods.js";
+import { ErMessage } from "@su-130pm/components";
 function handleConfirm() {
-  message({ message: "已确认删除", type: "success" });
+  ErMessage({ message: "已确认删除", type: "success" });
 }
 function handleCancel() {
-  message({ message: "已取消", type: "info" });
+  ErMessage({ message: "已取消", type: "info" });
 }
 </script>

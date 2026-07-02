@@ -5,9 +5,9 @@
   </div>
 </template>
 <script setup>
-import { Loading } from "../../../components/Loading/service.js";
+import { ErLoadingService } from "@su-130pm/components";
 function open() {
-  const loading = Loading({
+  const loading = ErLoadingService({
     text: "全屏加载中...",
     fullscreen: true,
   });

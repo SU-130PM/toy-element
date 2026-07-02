@@ -13,13 +13,13 @@ demo-preview=../demo/message/Basic.vue
 直接引入 `message` 函数调用：
 
 ```js
-import message from "@su-130pm/components/Message/methods.js";
-message({ message: "提示信息", type: "info" });
-message.info("快捷方式");
-message.success("成功");
-message.warning("警告");
-message.danger("危险");
-message.closeAll(); // 关闭所有
+import { ErMessage } from "@su-130pm/components";
+ErMessage({ message: "提示信息", type: "info" });
+ErMessage.info("快捷方式");
+ErMessage.success("成功");
+ErMessage.warning("警告");
+ErMessage.danger("危险");
+ErMessage.closeAll(); // 关闭所有
 ```
 
 | 参数名 | 说明 | 类型 | 默认值 |

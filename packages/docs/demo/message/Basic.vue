@@ -7,8 +7,8 @@
   </div>
 </template>
 <script setup>
-import message from "../../../components/Message/methods.js";
+import { ErMessage } from "@su-130pm/components";
 function show(type) {
-  message({ message: `${type} 消息提示`, type });
+  ErMessage({ message: `${type} 消息提示`, type });
 }
 </script>

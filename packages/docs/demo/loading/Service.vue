@@ -7,9 +7,9 @@
   </div>
 </template>
 <script setup>
-import { Loading } from "../../../components/Loading/service.js";
+import { ErLoadingService } from "@su-130pm/components";
 function open() {
-  const loading = Loading({
+  const loading = ErLoadingService({
     text: "服务方式加载中...",
     background: "rgba(0, 0, 0, 0.7)",
   });

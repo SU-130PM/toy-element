@@ -17,8 +17,8 @@ demo-preview=../demo/messagebox/Basic.vue
 | `msgbox.prompt(message, title, options)` | 输入 | `Promise` |
 
 ```js
-import msgbox from "@su-130pm/components/MessageBox/methods.js";
-msgbox.alert("消息内容", "标题", { confirmButtonText: "确定" });
+import { ErMessageBox } from "@su-130pm/components";
+ErMessageBox.alert("消息内容", "标题", { confirmButtonText: "确定" });
 ```
 
 | 参数名 | 说明 | 类型 | 默认值 |

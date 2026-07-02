@@ -7,8 +7,8 @@
   </div>
 </template>
 <script setup>
-import notification from "../../../components/Notification/methods.js";
+import { ErNotification } from "@su-130pm/components";
 function show(type) {
-  notification({ title: `${type} 通知`, message: `这是一条 ${type} 类型的通知`, type });
+  ErNotification({ title: `${type} 通知`, message: `这是一条 ${type} 类型的通知`, type });
 }
 </script>

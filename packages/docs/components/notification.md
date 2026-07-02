@@ -13,10 +13,10 @@ demo-preview=../demo/notification/Basic.vue
 直接引入 `notification` 函数调用：
 
 ```js
-import notification from "@su-130pm/components/Notification/methods.js";
-notification({ title: "标题", message: "内容", type: "success" });
-notification.success("快捷方式");
-notification.closeAll();
+import { ErNotification } from "@su-130pm/components";
+ErNotification({ title: "标题", message: "内容", type: "success" });
+ErNotification.success("快捷方式");
+ErNotification.closeAll();
 ```
 
 | 参数名 | 说明 | 类型 | 默认值 |
