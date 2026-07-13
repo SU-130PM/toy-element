@@ -31,7 +31,7 @@ const selected = computed(
 
 const isHighlighted = computed(() =>
   every(["label", "value"], (key) =>
-    eq(get(ctx?.highlightedLine, "value", key), get(props, key))
+    eq(get(ctx?.highlightedLine, key), get(props, key))
   )
 );
 
