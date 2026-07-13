@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, useAttrs } from "vue";
+import { ref, computed, watch } from "vue";
 import { each, noop } from "lodash-es";
 import ErIcon from "../Icon/Icon.vue";
 
@@ -130,6 +130,7 @@ defineExpose({ ref: _ref, focus, blur, select, clear });
           <slot name="prefix"></slot>
         </span>
         <input
+          v-bind="$attrs"
           class="er-input__inner"
           ref="inputRef"
           :id="id"
@@ -176,6 +177,7 @@ defineExpose({ ref: _ref, focus, blur, select, clear });
     <!-- textarea -->
     <template v-else>
       <textarea
+        v-bind="$attrs"
         class="er-textarea__wrapper"
         ref="textareaRef"
         :id="id"
