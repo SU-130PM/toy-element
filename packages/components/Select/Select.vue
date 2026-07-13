@@ -261,6 +261,7 @@ function handleFilter() {
 }
 
 function handleKeyDown(e) {
+  console.log("[ErSelect] keydown:", e.key, "| dropdown:", isDropdownVisible.value, "| highlightIdx:", selectStates.highlightedIndex);
   keyMap.has(e.key) && keyMap.get(e.key)?.(e);
 }
 
@@ -317,7 +318,7 @@ defineExpose({ focus, blur });
       manual
     >
       <template #default>
-        <div ref="inputWrapperRef">
+        <div ref="inputWrapperRef" @keydown="handleKeyDown">
           <ErInput
             ref="inputRef"
             v-model="selectStates.inputValue"
@@ -328,7 +329,6 @@ defineExpose({ focus, blur });
             @focus="handleFocus"
             @blur="handleBlur"
             @input="handleFilterDebounce"
-            @keydown="handleKeyDown"
           >
             <template #suffix>
               <ErIcon
