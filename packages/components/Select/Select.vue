@@ -115,7 +115,7 @@ const showClear = computed(
   () => props.clearable && selectStates.mouseHover && selectStates.inputValue !== ""
 );
 
-const handleFilterDebounce = debounce(handleFilter, timeout.value);
+const handleFilterDebounce = computed(() => debounce(handleFilter, timeout.value));
 
 const keyMap = useKeyMap({
   isDropdownVisible,
@@ -155,7 +155,7 @@ function controlInputVal(visible) {
   if (!props.filterable) return;
   if (visible) {
     if (selectStates.selectedOption) selectStates.inputValue = "";
-    handleFilterDebounce();
+    handleFilterDebounce.value();
   } else {
     selectStates.inputValue = selectStates.selectedOption?.label || "";
   }
@@ -168,6 +168,11 @@ function toggleVisible() {
 
 function findOption(value) {
   return find(props.options, (option) => option.value === value);
+}
+
+function findChildOption(value) {
+  const found = find(childrenOptions.value, (item) => item.props?.value === value);
+  return found?.props;
 }
 
 function handleClickOutside() {
@@ -186,7 +191,7 @@ function handleSelect(o) {
 }
 
 function setSelected() {
-  const option = findOption(props.modelValue);
+  const option = findOption(props.modelValue) || findChildOption(props.modelValue);
   if (!option) return;
   selectStates.inputValue = option.label;
   selectStates.selectedOption = option;
@@ -261,7 +266,6 @@ function handleFilter() {
 }
 
 function handleKeyDown(e) {
-  console.log("[ErSelect] keydown:", e.key, "| dropdown:", isDropdownVisible.value, "| highlightIdx:", selectStates.highlightedIndex);
   keyMap.has(e.key) && keyMap.get(e.key)?.(e);
 }
 
@@ -269,6 +273,16 @@ watch(
   () => props.options,
   (newOpts) => {
     filteredOptions.value = newOpts ?? [];
+    // options 变化后同步选中项的 label（防止 label 改变后 input 显示旧值）
+    if (selectStates.selectedOption) {
+      const updated = findOption(selectStates.selectedOption.value);
+      if (updated && updated.label !== selectStates.selectedOption.label) {
+        selectStates.selectedOption = updated;
+        if (!isDropdownVisible.value) {
+          selectStates.inputValue = updated.label;
+        }
+      }
+    }
   }
 );
 
@@ -285,6 +299,20 @@ watch(
       setSelected();
     }
   }
+);
+
+// 选项变化时检查 highlightedIndex 是否越界
+watch(
+  [filteredOptions, filteredChilds],
+  () => {
+    const maxIndex = hasChildren.value
+      ? filteredChilds.value.size - 1
+      : size(filteredOptions.value) - 1;
+    if (selectStates.highlightedIndex > maxIndex) {
+      selectStates.highlightedIndex = -1;
+    }
+  },
+  { flush: "post" }
 );
 
 onMounted(() => {
@@ -328,7 +356,7 @@ defineExpose({ focus, blur });
             :readonly="!filterable || !isDropdownVisible"
             @focus="handleFocus"
             @blur="handleBlur"
-            @input="handleFilterDebounce"
+            @input="handleFilterDebounce.value"
           >
             <template #suffix>
               <ErIcon
