@@ -1,4 +1,4 @@
-import { ref, createApp, reactive, nextTick } from "vue";
+import { ref, createApp, reactive } from "vue";
 import { useZIndex } from "@su-130pm/hooks";
 import LoadingComp from "./Loading.vue";
 import { delay, isNil, isString } from "lodash-es";
@@ -30,7 +30,7 @@ function createLoadingComponent(options) {
     if (destroyed) return;
     destroyed = true;
     const target = data.parent;
-    subtLoadingNumb(target);
+    // counter 已在 close() 中扣减,此处仅做清理
     if (getLoadingNumb(target)) return;
     delay(() => {
       removeRelativeClass(target);
@@ -42,8 +42,18 @@ function createLoadingComponent(options) {
   };
 
   let afterLeaveTimer;
+  // 重置销毁标记并恢复显示,用于 Loading() 命中已有实例时复用
+  const show = () => {
+    if (destroyed) return;
+    afterLeaveFlag.value = false;
+    clearTimeout(afterLeaveTimer);
+    visible.value = true;
+  };
   const close = () => {
     if (options.beforeClose && !options.beforeClose()) return;
+    const target = data.parent;
+    const remaining = subtLoadingNumb(target);
+    if (remaining > 0) return;
     afterLeaveFlag.value = true;
     clearTimeout(afterLeaveTimer);
     afterLeaveTimer = delay(handleAfterLeave, 500);
@@ -64,6 +74,7 @@ function createLoadingComponent(options) {
     },
     vm,
     close,
+    show,
     visible,
     setText,
   };
@@ -119,14 +130,14 @@ function addLoadingNumb(target = document.body) {
 
 function subtLoadingNumb(target = document.body) {
   const numb = getLoadingNumb(target);
-  if (numb) {
-    const newNumb = Number.parseInt(numb) - 1;
-    if (newNumb === 0) {
-      removeLoadingNumb(target);
-    } else {
-      target.setAttribute(LOADING_NUMB_KEY, `${newNumb}`);
-    }
+  if (!numb) return 0;
+  const newNumb = Number.parseInt(numb) - 1;
+  if (newNumb === 0) {
+    removeLoadingNumb(target);
+  } else {
+    target.setAttribute(LOADING_NUMB_KEY, `${newNumb}`);
   }
+  return newNumb;
 }
 
 function addClass(options, parent = document.body) {
@@ -150,7 +161,8 @@ export function Loading(options = {}) {
 
   if (instanceMap.has(target)) {
     const existingInstance = instanceMap.get(target);
-    nextTick(() => (existingInstance.visible.value = true));
+    addLoadingNumb(target);
+    existingInstance.show();
     return existingInstance;
   }
 
