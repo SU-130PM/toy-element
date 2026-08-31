@@ -14,10 +14,12 @@
     "build:packages": "node ./scripts/build-packages.mjs",
     "release": "corepack pnpm run test && corepack pnpm run build:packages",
     "publish:utils": "corepack pnpm publish ./packages/utils/dist --access public --no-git-checks",
+    "publish:constants": "corepack pnpm publish ./packages/constants/dist --access public --no-git-checks",
+    "publish:hooks": "corepack pnpm publish ./packages/hooks/dist --access public --no-git-checks",
     "publish:theme": "corepack pnpm publish ./packages/theme/dist --access public --no-git-checks",
     "publish:components": "corepack pnpm publish ./packages/components/dist --access public --no-git-checks",
     "publish:core": "corepack pnpm publish ./packages/core/dist --access public --no-git-checks",
-    "publish:packages": "corepack pnpm run publish:utils && corepack pnpm run publish:theme && corepack pnpm run publish:components && corepack pnpm run publish:core",
+    "publish:packages": "corepack pnpm run publish:utils && corepack pnpm run publish:constants && corepack pnpm run publish:hooks && corepack pnpm run publish:theme && corepack pnpm run publish:components && corepack pnpm run publish:core",
     "publish:release": "corepack pnpm run release && corepack pnpm run publish:packages"
   },
   "devDependencies": {
