@@ -12,7 +12,7 @@
     "test": "corepack pnpm --filter @su-130pm/components test",
     "build:play": "corepack pnpm --filter @su-130pm/play build",
     "build:packages": "node ./scripts/build-packages.mjs",
-    "release": "corepack pnpm run test && corepack pnpm run build:packages",
+    "release": "corepack pnpm run test && corepack pnpm run build:packages && corepack pnpm run docs:build",
     "publish:utils": "corepack pnpm publish ./packages/utils/dist --access public --no-git-checks",
     "publish:constants": "corepack pnpm publish ./packages/constants/dist --access public --no-git-checks",
     "publish:hooks": "corepack pnpm publish ./packages/hooks/dist --access public --no-git-checks",
